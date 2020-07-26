@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles-merged.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <script src="/static/message/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/static/message/js/move-top.js"></script>
+    <script type="text/javascript" src="/static/message/js/easing.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/js/vendor/html5shiv.min.js"></script>
+    <script src="/static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+      <nav class="navbar navbar-default probootstrap-navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home" title="uiCookies:Enlight">Enlight</a>
+          </div>
+
+          <div id="navbar-collapse" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="home">首页</a></li>
+              <li><a href="news">爱心资讯</a></li>
+              <li><a href="causes">我们在路上</a></li>
+              <li><a href="specialnews">特别新闻</a></li>
+              <li><a href="about">关于我们</a></li>
+              <li><a href="testimonial">公益柜</a></li>
+              <li><a href="gallery">现场实况</a></li>
+              <li><a href="index">个人中心</a></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
+                <ul class="dropdown-menu">
+                  <li><a href="cause-single">优秀成员</a></li>
+                  <li><a href="comment">平台评价留言</a></li>
+                  <li><a href="donate">平台捐款</a></li>
+                </ul>
+              </li>
+              <li th:if="${session.username==null}" class="probootstra-cta-button last"><a href="login" class="btn btn-primary">登录</a></li>
+              <li th:if="${session.username!=null}" class="probootstra-cta-button last"><a href="#" class="btn btn-primary"><th:block th:text="${session.username}"></th:block></a></li>
+              <li  th:if="${session.username!=null}"><a href="logout">退出</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(static/img/hero12.jpg)"  data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
+                <h1 class="probootstrap-heading probootstrap-animate">Ta的声音</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="probootstrap-section">
+        <div class="recent-com">
+          <div class="recent-com-grids">
+            <div th:each="comment:${clist.list}" class="recent-com-grid">
+              <div class="col-xs-2 recent-com-grid-left">
+                <img th:src="${comment.uimage}" alt=" " class="img-responsive" />
+              </div>
+              <div class="col-xs-10 recent-com-grid-right">
+                <h5><a href="" th:text="${comment.username}"></a></h5>
+                <p><th:block th:text="${comment.comment}"></th:block></p>
+                <div class="reply">
+                  <a th:href="@{/deleteallComment(cid=${comment.cid})}"><span th:if="${session.permisssionlevel!=null&&session.permisssionlevel<4||session.Uid==comment.uid}"  aria-hidden="true">删除</span></a>
+                </div>
+                <div th:if="${session.permisssionlevel!=null&&comment.cflag==0&&session.permisssionlevel<4}" class="recent-com-grid recent-com-grid1">
+                  <form  id="pro">
+                    <textarea name="apply" id="apply" cols="80" rows="5" required="" placeholder="写下您的回复..."></textarea>
+                    <input type="hidden" name="aid" id="aid" th:value="${comment.cid}" >
+                    <input type="submit" value="回复" onclick="submitapply()">
+                  </form>
+                </div>
+                <div th:if="${comment.cflag==1}" class="recent-com-grid recent-com-grid1">
+                  <div class="col-xs-10 recent-com-grid-right">
+                    <h5 style="text-indent: 10em"><a href=""><th:block th:text="${comment.caboy}"></th:block></a></h5>
+                    <p style="text-indent: 10em"><th:block th:text="${comment.capply}"></th:block></p>
+                  </div>
+                  <div class="clearfix"> </div>
+                </div>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <ul class="pager">
+            <li class="num"><a th:href="@{/comment(pageNum=1)}">首页</a></li>
+            <li class="num"><a th:if="${clist.pageNum} > '1'" id="previouspage" th:href="@{/comment(pageNum=${clist.prePage})}" class="previous">
+              &lt;&lt;</a></li>
+            <th:block class="pagination" th:each="pagenum:${pagenums}">
+              <!--	${#httpServletRequest.getRequestURL()}表示当前url，href中也可以不写，如下直接加参数		 -->
+              <li class="num"><a class="active" style="color: #ff2727"  th:if="${clist.pageNum==pagenum}" th:href="@{/comment(pageNum=${pagenum})}">[[${pagenum}]]</a></li>
+
+              <li class="num"><a class="num" th:if="${clist.pageNum!=pagenum}"th:class="'pagenum'+${pagenum}" th:href="@{/comment(pageNum=${pagenum})}">[[${pagenum}]]</a></li>
+            </th:block>
+            <li class="num"><a class="next" th:if="${clist.pageNum} < ${clist.pages}" id="nextpage" th:href="@{/comment(pageNum=${clist.nextPage})}" aria-label="Next">
+              &gt;&gt;</a></li>
+            <li class="num"><a id="endpage" th:href="@{/comment(pageNum=${clist.pages})}">末页</a></li>
+            <li class="num"><span aria-label="Next">相关记录[[${clist.total}]]条，共[[${clist.pages}]]页。</span></li>
+          </ul>
+        </div>
+        </div>
+        <br><br><br>
+        <div th:if="${session.username!=null}" class="container">
+          <div class="row">
+            <div class="col-md-5 probootstrap-animate">
+              <form action="" method="post" id="form" class="probootstrap-form">
+                <div class="form-group">
+                  <label for="comment">评价内容</label>
+                  <textarea cols="30" rows="10" class="form-control"  id="comment" name="comment"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" onclick="sumbit()" value="评价">
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6 col-md-push-1 probootstrap-animate">
+            </div>
+          </div>
+        </div>
+
+        <div class="leave-comm" th:if="${session.username==null}">
+          <h4>请登陆后<span>才可以留言</span></h4>
+        </div>
+      </section>
+
+
+      <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>关于我们</h3>
+                <p>通过我们这个公益自助平台，我们希望可以让更多的人可以参加到公益社会，爱心社会的建设中来，以实现爱心献社会温暖暖人间的目标。</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>联系我们</h3>
+                <ul class="probootstrap-contact-info">
+                  <li><i class="icon-location2"></i> <span>广东省东莞市东莞理工学院</span></li>
+                  <li><i class="icon-mail"></i><span>c1063493030</span></li>
+                  <li><i class="icon-phone2"></i><span>+13433623007</span></li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>公益</h3>
+                <p>爱心是冬日里的一片阳光，使饥寒交迫的人分外感到人间的温暖。爱心是沙漠中的一泓泉水，使濒临绝境的人重新看到生活的希望。爱心是夜空中的一轮明月，使孤苦无依的人即刻获得心灵的慰藉。爱心是春天里的一场细雨，使心灵枯萎的人特别感到情感的滋润。爱心是夏日里的一阵清风，使心急如焚的人感到无比的凉爽。爱心是黑夜里的一座灯塔，使迷失方向的航船找到停靠的港湾</p>
+                <p><a href="donate" class="btn btn-primary">捐赠</a></p>
+              </div>
+            </div>
+
+          </div>
+          <!-- END row -->
+
+        </div>
+
+      </footer>
+
+      <script src="/static/js/scripts.min.js"></script>
+      <script src="/static/js/main.min.js"></script>
+      <script src="/static/js/custom.js"></script>
+      <script>
+          function sumbit() {
+              var comment = $("#comment").val();
+              $.ajax(
+                  {
+                      url: "submitallcomment",
+                      type: "POST",
+                      data: {comment:comment},
+                      success: function (data) {
+                          if (data) {
+                              confirm("回复成功");
+                              location.href="comment"
+                          }
+                      }
+
+                  }
+              );
+          }
+
+          function submitapply() {
+              var aid = $("#aid").val();
+              var apply = $("#apply").val();
+              $.ajax(
+                  {
+                      url: "applyfirtscomment",
+                      type: "POST",
+                      data: {aid:aid,apply:apply},
+                      success: function (data) {
+                          if (data) {
+                              confirm("回复成功");
+                              location.href="comment";
+                          }
+                      }
+
+                  }
+              );
+          }
+      </script>
+  </body>
+</html>

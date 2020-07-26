@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.EmailDao">
+    <select id="SelectAllEmail" resultType="email">
+          select * from email order by eid desc
+    </select>
+    <delete id="DeleteEmail" parameterType="Integer">
+        delete from email where eid = #{eid}
+    </delete>
+    <insert id="InsertEmail" parameterType="email">
+        insert into email(eusername,email,emess,esubject,etime,esenduser) values (#{eusername},#{email},#{emess},#{esubject},#{etime},#{esenduser});
+    </insert>
+</mapper>

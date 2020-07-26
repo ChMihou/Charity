@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>后台登录-X-admin2.2</title>
+        <meta name="renderer" content="webkit|ie-comp|ie-stand">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+        <link rel="stylesheet" href="/static/css/font.css">
+        <link rel="stylesheet" href="/static/css/xadmin.css">
+        <script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
+        
+    </head>
+    <body>
+    <div class="content whisper-content leacots-content details-content">
+        <div class="cont w1000">
+            <div class="whisper-list">
+                <div class="item-box">
+                    <div class="review-version">
+                        <div class="form-box">
+                            <div  class="article-cont">
+                                <div class="title">
+                                    <h1>留言主题：<b><th:block th:text="${message.mtitle}"></th:block></b></h1><br><br>
+                                    <p class="cont-info">
+                                        <span class="data">留言时间：<span th:text="${message.mtime}"></span></span>
+                                        <span >留言人：<span th:text="${message.mname}" ></span></span>
+                                    </p>
+                                </div><br><br><br>
+                                <h3><p th:utext="${message.mess}"></p></h3>
+                            </div>
+                        </div>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <span th:if="${message.mflag ==1}"><div>回复:<b><span th:text="${message.mapply}"></span></b></div></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>

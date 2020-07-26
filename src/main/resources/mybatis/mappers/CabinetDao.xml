@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.CabinetDao">
+    <select id="SelectAllCabinet" resultType="cabinet" parameterType="String">
+          select * from cabinet where 1 = 1
+          <if test="Caddress!=null">
+              and caddress LIKE concat('%',#{caddress},'%')
+          </if>
+        <if test="cid!=null">
+            and cid LIKE concat('%',#{cid},'%')
+        </if>
+    </select>
+
+    <insert id="addCabinet" parameterType="cabinet">
+          insert into cabinet(caddress,cname) values (#{caddress},#{cname});
+    </insert>
+
+    <delete id="deleteIdCabinet" parameterType="Integer">
+      delete from cabinet where cid = #{cid}
+    </delete>
+
+    <update id="updateCabinet" parameterType="cabinet">
+        update cabinet set caddress = #{caddress} ,cname =#{cname} where cid = #{cid};
+    </update>
+</mapper>

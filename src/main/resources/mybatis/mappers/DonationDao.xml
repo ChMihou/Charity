@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.DonationDao">
+    <select id="CheckDonation" resultType="Integer">
+        select count(*) from Donation
+    </select>
+    <select id="CheckDMoney" resultType="Integer">
+        select sum(dmoney) from Donation
+    </select>
+    <select id="SelectNameDonation" parameterType="Integer" resultType="donation">
+        select * from donation where did = #{did}
+    </select>
+    <select id="SelectAllDonation" parameterType="Integer" resultType="UserDonationVo">
+        select user.*,donation.* from user,donation where user.uid = donation.duid
+        <if test="duid!=null">
+            and duid = #{duid}
+        </if>
+        order by donation.did desc
+    </select>
+    <insert id="AddDonation" parameterType="Donation">
+        insert into donation(duid,dmoney,donations,daddress,dsid,dnid) values (#{duid},#{dmoney},#{donations},#{daddress},#{dsid},#{dnid});
+    </insert>
+    <delete id="DeleteDonation" parameterType="Integer">
+        delete from donation where Did = #{did};
+    </delete>
+    <update id="UpdateDonation">
+        update donation set dmoney=#{dmoney},donations = #{donations},daddress=#{daddress},duid = #{duid}
+        where did = #{did};
+    </update>
+    <select id="SelectIdDonation" parameterType="Integer" resultType="donation">
+        select * from donation  where did = #{did};
+    </select>
+    <select id="SelectNIdDonation" resultType="UserDonationVo" parameterType="Integer">
+        select user.*,donation.* from user,donation where user.uid = donation.duid and donation.dnid = #{dnid}
+        order by donation.did desc
+    </select>
+</mapper>

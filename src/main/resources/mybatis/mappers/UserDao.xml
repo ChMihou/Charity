@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.UserDao">
+    <select id="SelectUsername" parameterType="String" resultType="User">
+        select * from User where username = #{username};
+    </select>
+    <select id="SelectUserId" parameterType="Integer" resultType="User">
+        select * from User where uid = #{uid};
+    </select>
+    <select id="SelectUPw" parameterType="User" resultType="User">
+        select * from User where Username = #{Username} and Upassword = #{Upassword}
+    </select>
+
+    <select id="checkRole" parameterType="Integer" resultType="Role">
+        select Role.* from Role,UserRole where UserRole.userid = #{Userid} and Role.Rid = UserRole.Roleid;
+    </select>
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="Uid" >
+        insert into user (uid,uname,username,upassword,usex,uemail,uiphone,udatetime,uaddress,uimage)
+        values (null ,#{uname},#{username},#{upassword},#{usex},#{uemail},#{uiphone},#{udatetime},#{uaddress},#{uimage});
+    </insert>
+    <select id="SelectUPhone" parameterType="User" resultType="Boolean">
+        select *  from User where uiphone = #{uiphone} and username = #{Username}
+    </select>
+    <update id="updateUserPassword" parameterType="User">
+        update user set upassword = #{upassword} where username = #{username}
+    </update>
+    <update id="alterUser" parameterType="user">
+        update user set upassword = #{upassword},usex = #{usex},uaddress = #{uaddress},uemail = #{uemail} ,uiphone=#{uiphone}
+         where username = #{username}
+    </update>
+    <select id="SelectallUser" resultType="User" parameterType="String">
+        select * from User where
+         <if test="username!=null">
+         username like  concat("%",#{username},"%")
+         </if>
+        <if test="username==null">
+            1=1
+        </if>
+    </select>
+    <update id="alterUserAll" parameterType="user">
+        update user set username = #{username}, upassword = #{upassword},usex = #{usex},uaddress = #{uaddress},uemail = #{uemail} ,uiphone=#{uiphone}
+         where uid = #{uid};
+    </update>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from user where uid = #{uid};
+    </delete>
+    <select id="checkuserall" resultType="Integer">
+        select count(*) from User;
+    </select>
+    <update id="InsertImage" parameterType="user" >
+        update user set uimage = #{uimage} where uid = #{uid}
+    </update>
+    <select id="SelectRootUser" resultType="User">
+        select user.* from user,userrole where user.uid=userrole.userid and userrole.roleid =1
+    </select>
+    <select id="SelectEmail" parameterType="User" resultType="User">
+        select * from user where uemail = #{uemail} and username = #{username}
+    </select>
+</mapper>

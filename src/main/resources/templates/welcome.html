@@ -1,0 +1,164 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Church &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
+    <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+
+
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet"
+    >
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="/static/backup/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="/static/backup/css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="/static/backup/css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="/static/backup/css/magnific-popup.css">
+
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="/static/backup/css/flexslider.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="/static/backup/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/backup/css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="/static/backup/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="/static/backup/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="/static/backup/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <nav class="fh5co-nav" role="navigation">
+        <div class="container-wrap">
+            <div class="top-menu">
+                <div class="row">
+                    <div class="col-md-12 col-offset-0 text-center">
+                        <div id="fh5co-logo"><a href="welcome">公益</a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container-wrap">
+        <aside id="fh5co-hero">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li style="background-image: url(/static/backup/images/img_bg_1.jpg);">
+                        <div class="overlay"></div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url(/static/backup/images/img_bg_2.jpg);">
+                        <div class="overlay"></div>
+                    </li>
+                    <li style="background-image: url(/static/backup/images/img_bg_3.jpg);">
+                        <div class="overlay"></div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div id="fh5co-intro">
+            <div class="row animate-box">
+                <div class="col-md-12 col-md-offset-0 text-center">
+                    <h2>爱心献社会，真情暖人间 !</h2>
+                    <span>我们都可以在路上</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="fh5co-counter" class="fh5co-counters">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center animate-box">
+                    <p>慈悲不是出于勉强，它是像甘露一样从天上降下尘世；它不但给幸福于受施的人，也同样给幸福于施与的人。——莎士比亚</p>
+                </div>
+            </div>
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                            <span class="fh5co-counter js-counter" data-from="0" th:data-to="${people}" data-speed="5000" data-refresh-interval="50"></span>
+                            <span class="fh5co-counter-label">成员</span>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                            <span class="fh5co-counter js-counter" data-from="0" th:data-to="${donation}" data-speed="5000" data-refresh-interval="50"></span>
+                            <span class="fh5co-counter-label">物资</span>
+                        </div>
+                        <div class="clearfix visible-sm-block visible-xs-block"></div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                            <span class="fh5co-counter js-counter" data-from="0" th:data-to="${money}" data-speed="5000" data-refresh-interval="50"></span>
+                            <span class="fh5co-counter-label">善款</span>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                            <span class="fh5co-counter js-counter" data-from="0" th:data-to="${notice}" data-speed="5000" data-refresh-interval="50"></span>
+                            <span class="fh5co-counter-label">项目</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- END container-wrap -->
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="/static/backup/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="/static/backup/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="/static/backup/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="/static/backup/js/jquery.waypoints.min.js"></script>
+<!-- Flexslider -->
+<script src="/static/backup/js/jquery.flexslider-min.js"></script>
+<!-- Carousel -->
+<script src="/static/backup/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="/static/backup/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/backup/js/magnific-popup-options.js"></script>
+<!-- Counters -->
+<script src="/static/backup/js/jquery.countTo.js"></script>
+<!-- Main -->
+<script src="/static/backup/js/main.js"></script>
+
+</body>
+</html>
+

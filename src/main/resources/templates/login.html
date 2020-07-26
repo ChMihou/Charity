@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../static/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>User Login</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../static/assets/css/demo.css" rel="stylesheet" />
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="" />
+    <!--  Social tags      -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+
+<body class="login-page sidebar-collapse">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+        <div class="container">
+            <div class="dropdown button-dropdown">
+                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-header">Dropdown header</a>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">One more separated link</a>
+                </div>
+            </div>
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="home" rel="tooltip" data-placement="bottom">
+                    返回首页
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" >
+                <ul class="navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="page-header" filter-color="orange">
+        <div class="page-header-image" style="background-image:url(../static/assets/img/login.jpg)"></div>
+        <div class="container">
+            <div class="col-md-4 content-center">
+                <div class="card card-login card-plain">
+                    <form class="form" method="" id="form">
+                        <div class="header header-primary text-center">
+                            <div class="logo-container">
+                                <img src="../static/assets/img/now-logo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                                <input id="Username" name="Username" type="text" class="form-control" placeholder="用户名">
+                            </div>
+                            <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons text_caps-small"></i>
+                                </span>
+                                <input id="Upasssword" name="Upassword" type="password" placeholder="密码" class="form-control" />
+                            </div>
+                            <div class="input-group form-group-no-border input-lg">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons text_caps-small"></i>
+                                </span>
+                                <input id="checks" name="checks" type="text" placeholder="验证码" class="form-control" />
+                                <img id="imgVerify" src="" alt="点击更换验证码" />
+                                <a href="javascript:void(0);" onclick="getVerify()" id="verify" rel="nofollow">看不清<br>换一张</a>
+                            </div>
+                        </div>
+                        <div class="footer text-center" type="su">
+                            <input type="button" lay-submit lay-filter="login" class="btn btn-primary btn-round btn-lg btn-block" value="登录" ></input>
+                        </div>
+                        <div class="pull-left">
+                            <h6>
+                                <a id="create" href="javascript:;" class="link">注册账号</a>
+                            </h6>
+                        </div>
+                        <div class="pull-right">
+                            <h6>
+                                <a id="lostpassword" href="javascript:;"class="link">忘记密码?</a>
+                            </h6>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="../static/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="../static/assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="../static/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="../static/assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Share Library etc -->
+<script src="../static/assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+<script src="../static/assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+<script>
+    $(function() {
+        layui.use('form', function(){
+            var form = layui.form;
+            $(document).ready(function(){
+                //首次获取验证码
+                $("#imgVerify").attr("src","getVerify?"+Math.random());
+            });
+
+            $("#lostpassword").click(function () {
+                layer.open({
+                    type : 2,
+                    title : '忘记密码',
+                    content : "user-lostpassword",
+                    area : ['600px', '400px'],
+                    shadeClose: false,               //开启遮罩关闭
+                });
+            })
+            $("#create").click(function () {
+                layer.open({
+                    type : 2,
+                    title : '注册账号',
+                    content : "member-add",
+                    area : ['600px', '650px'],
+                    shadeClose: false,               //开启遮罩关闭
+                });
+            })
+
+            form.on('submit(login)', function(){
+                var username = $("#Username").val();
+                var password = $("#Upassword").val();
+                var checks = $("#checks").val();
+                $.ajax({
+                    type : "POST",
+                    url : "loginchecks",
+                    data : $('#form').serialize(),
+                    dataType : "json",
+                    success : function(state){
+                        if (state == "1") {
+                            window.location.href="index";
+                        } else if (state == "2"){
+                            layer.msg("验证码错误");
+                            var e = document.createEvent("MouseEvents");
+                            e.initEvent("click", true, true);
+                            document.getElementById("verify").dispatchEvent(e);
+                        } else if (state == "3"){
+                            layer.msg("用户名或密码错误");
+                        }else{
+                            window.location.href="compel";
+                        }
+                    },
+                });
+            });
+        });
+    })
+    //获取验证码
+    function getVerify(){
+        var src1 = document.getElementById('imgVerify');
+        src1.src = "getVerify?"+Math.random();
+    }
+</script>
+</html>

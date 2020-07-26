@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.NoticeDao">
+    <select id="SelectNotice1" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=1
+        <if test="nflag!=null">
+            and Nflag = #{Nflag}
+        </if>
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+    <select id="SelectNotice2" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=2
+        <if test="nflag!=null">
+            and Nflag = #{Nflag}
+        </if>
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+    <select id="SelectNotice3" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=3
+        <if test="nflag!=null">
+            and Nflag = #{Nflag}
+        </if>
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+
+    <select id="SelectreadNotice1" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=1 and nflag = 1
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+    <select id="SelectreadNotice2" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=2 and nflag = 1
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+    <select id="SelectreadNotice3" parameterType="Notice" resultType="notice">
+        select * from notice where Nselect=3 and nflag = 1
+        <if test="ntitle!=null">
+            and Ntitle LIKE concat('%',#{Ntitle},'%')
+        </if>
+        order by Nid desc
+    </select>
+    <select id="SelectNoticeId" resultType="Notice" parameterType="Integer">
+        select * from notice where nid = #{nid}
+    </select>
+    <update id="updateNotice1" parameterType="notice">
+        update notice set ntitle = #{ntitle},nintro = #{nintro} ,narticle = #{narticle} ,ntime = #{ntime} ,nflag=#{nflag},money=#{money} where nid = #{nid}
+    </update>
+    <update id="updateNotice2" parameterType="notice">
+        update notice set ntitle = #{ntitle},nintro = #{nintro} ,narticle = #{narticle} ,ntime = #{ntime} ,nflag=#{nflag},nimage = #{nimage},money=#{money} where nid = #{nid}
+    </update>
+    <insert id="addNotice" parameterType="Notice" >
+        insert into notice (ntitle,narticle,ntime,nflag,nauthor,nselect,nmoney,nimage,Money,nintro) values (#{ntitle},#{narticle},#{ntime},#{nflag},#{nauthor},#{nselect},#{nmoney},#{nimage},#{money},#{nintro})
+    </insert>
+    <delete id="deleteOneNotice" parameterType="Integer">
+        delete from notice where nid = #{nid}
+    </delete>
+    <update id="alterCheck" parameterType="jsoncheck">
+        update notice set ncheckboy = #{ncheckboy} ,ncause = #{ncause} ,nflag = #{nflag} where nid = #{nid}
+    </update>
+    <select id="CheckNotice" resultType="Integer">
+        select count(*) from notice
+    </select>
+    <update id="donateNotice" parameterType="Notice">
+        update notice set nmoney = #{nmoney} where nid = #{nid};
+    </update>
+    <select id="Selectdmoney" parameterType="Integer" resultType="Integer">
+        select nmoney from notice where nid = #{nid}
+    </select>
+    <select id="Selectallmoney" parameterType="Integer" resultType="Integer">
+        select money from notice where nid = #{nid}
+    </select>
+    <select id="SelectLatestNotice" resultType="Notice">
+        SELECT * FROM notice where nselect=2 and nflag=1 ORDER BY nid DESC LIMIT 1
+    </select>
+    <select id="SelectAllImage" resultType="String">
+        select nimage from notice order by notice.nid
+    </select>
+</mapper>

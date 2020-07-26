@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--logger leves trace<debug<info<warn<error<fatal -->
+<configuration status="off">
+    <appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l - %m%n"/>
+        </Console>
+        <RollingFile name="info_appender" fileName="logs/log.log" filePattern="logs/%d{yyyy-MM-dd}/log_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="info"/>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="error_appender" fileName="logs/log-error.log" filePattern="logs/%d{yyyy-MM-dd}/log_error_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3"/>
+        </RollingFile>
+        <RollingFile name="sql_appender" fileName="logs/log-sql.log" filePattern="logs/%d{yyyy-MM-dd}/log_sql_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="debug"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3"/>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <Root level="info">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="info_appender"/>
+            <AppenderRef ref="error_appender"/>
+        </Root>
+        <Logger name="errorLog" level="info" additivity="false">
+            <appender-ref ref="error_appender" level="info"/>
+        </Logger>
+        <Logger name="com.charity.dao" level="DEBUG" additivity="false">
+            <appender-ref ref="sql_appender" level="DEBUG"/>
+        </Logger>
+        <!--  <logger name="jdbc.connection" level="OFF"/>
+          <logger name="jdbc.audit" level="OFF"/>
+          <logger name="jdbc.resultset" level="OFF"/>
+          <Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+            <appender-ref ref="sql_appender" level="DEBUG"/>
+          </Logger>-->
+    </loggers>
+</configuration>

@@ -1,0 +1,161 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                </div>
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form">
+                        <thead>
+                        <tr>
+                            <th>积分记录ID</th>
+                            <th>获得积分</th>
+                            <th>获得时间</th>
+                            <th>原因</th>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="score:${slist.list}">
+                            <td th:text="${score.sid}"></td>
+                            <td th:text="${score.score}"></td>
+                            <td th:text="${score.stime}"></td>
+                            <td th:text="${score.scause}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <a aria-label="Previous" id="firstpage" th:href="@{/score(pageNum=1)}">首页</a>
+                            <a th:if="${slist.pageNum} > '1'" id="previouspage" th:href="@{/score(pageNum=${slist.prePage})}" aria-label="Previous">
+                                &lt;&lt;</a>
+                            <th:block class="pagination" th:each="pagenum:${pagenums}">
+                                <!--	${#httpServletRequest.getRequestURL()}表示当前url，href中也可以不写，如下直接加参数		 -->
+                                <a class="num layui-btn layui-btn-warm" th:if="${slist.pageNum==pagenum}" th:href="@{/score(pageNum=${pagenum})}">[[${pagenum}]]</a>
+
+                                <a class="num" th:if="${slist.pageNum!=pagenum}" th:class="'pagenum'+${pagenum}" th:href="@{/score(pageNum=${pagenum})}">[[${pagenum}]]</a>
+                            </th:block>
+                            <a class="next" th:if="${slist.pageNum} < ${slist.pages}" id="nextpage" th:href="@{/score(pageNum=${slist.nextPage})}" aria-label="Next">
+                                &gt;&gt;</a>
+                            <a id="endpage" th:href="@{/score(pageNum=${slist.pages})}">末页</a>
+                            <span aria-label="Next">相关积分记录[[${slist.total}]]条，共[[${slist.pages}]]页。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/static/js/xcity.js"></script>
+<script>
+    //监听全选
+    layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var  form = layui.form;
+
+
+        // 监听全选
+        form.on('checkbox(checkall)', function(data){
+
+            if(data.elem.checked){
+                $('tbody input').prop('checked',true);
+            }else{
+                $('tbody input').prop('checked',false);
+            }
+            form.render('checkbox');
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+
+    });
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+
+            $.ajax(
+                {
+                    url:"deleteOneNotice",
+                    type:"POST",
+                    data:{"id":id},
+                    dataType:"json",
+                    success : function (data) {
+
+                    }
+                }
+            );
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
+            window.parent.location.reload();
+        });
+    }
+
+    function delAll (argument) {
+        var ids = [];
+
+        // 获取选中的id
+        $('tbody input').each(function(index, el) {
+            if($(this).prop('checked')){
+                ids.push($(this).val());
+            }
+        });
+
+        layer.confirm('确认要删除吗？'+ids.toString(),function(index){
+            //捉到所有被选中的，发异步进行删除
+            var checkedList = new Array(); //定义一个数组
+            $("input[name='id']:checked").each(function() {
+                //循环遍历，push()方法可向数组的末尾添加一个或多个元素，并返回新的长度
+                checkedList.push($(this).val()); //复选框的值是已经取到的数据id--$(this).val()
+            });
+            $.ajax(
+                {
+                    url:"deleteListNotice",
+                    type:"POST",
+                    data:{"ids":checkedList.toString()},
+                    dataType:"json",
+                    success : function (data) {
+
+                    }
+                }
+            );
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+            window.parent.location.reload();
+        });
+    }
+</script>
+<script>var _hmt = _hmt || []; (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</html>

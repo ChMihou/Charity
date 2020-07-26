@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>爱心献社会公益平台</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles-merged.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="/static/js/vendor/html5shiv.min.js"></script>
+      <script src="/static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+      <nav class="navbar navbar-default probootstrap-navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="" title="uiCookies:Enlight">Enlight</a>
+          </div>
+
+          <div id="navbar-collapse" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="home">首页</a></li>
+              <li><a href="news">爱心资讯</a></li>
+              <li><a href="causes">我们在路上</a></li>
+              <li><a href="specialnews">特别新闻</a></li>
+              <li><a href="about">关于我们</a></li>
+              <li><a href="testimonial">公益柜</a></li>
+              <li><a href="gallery">现场实况</a></li>
+              <li><a href="index">个人中心</a></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
+                <ul class="dropdown-menu">
+                  <li><a href="cause-single">优秀成员</a></li>
+                  <li><a href="comment">平台评价留言</a></li>
+                  <li><a href="donate">平台捐款</a></li>
+                </ul>
+              </li>
+              <li th:if="${session.username==null}" class="probootstra-cta-button last"><a href="login" class="btn btn-primary">登录</a></li>
+              <li th:if="${session.username!=null}" class="probootstra-cta-button last"><a href="#" class="btn btn-primary"><th:block th:text="${session.username}"></th:block></a></li>
+              <li th:if="${session.username!=null}"><a href="logout">退出</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <section class="probootstrap-hero" style="background-image: url(static/img/hero3.jpg)"  data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
+                <h1 class="probootstrap-heading probootstrap-animate">公益<span>让我们一起行动起来</span></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="probootstrap-service-intro">
+          <div class="container">
+            <div class="probootstrap-service-intro-flex">
+              <div class="item probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="icon">
+                  <i class="icon-wallet"></i>
+                </div>
+                <div class="text">
+                  <h2>行动起来</h2>
+                  <p>爱心献社会，温暖暖人间</p>
+                  <p><a href="donate">发起捐赠</a></p>
+                </div>
+              </div>
+              <div class="item probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="icon">
+                  <i class="icon-heart"></i>
+                </div>
+                <div class="text">
+                  <h2>加入我们</h2>
+                  <p>你也可以成为我们的一份子</p>
+                  <p><a href="login">志愿者注册</a></p>
+                </div>
+              </div>
+              <div class="item probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="icon">
+                  <i class="icon-graduation-cap"></i>
+                </div>
+                <div class="text">
+                  <h2>线下支持</h2>
+                  <p>在你的城市也可以帮助我们</p>
+                  <p><a href="testimonial">公益柜</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="probootstrap-section probootstrap-border-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+              <h2>平台实时数据</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div  class="col-md-3">
+              <div class="probootstrap-donors text-center probootstrap-animate">
+                <div class="text">
+                  <h3 style="color: #ff2727">成员</h3>
+                  <h2><p style="color: #0b0b0b"><th:block th:text="${people}"></th:block>人</p></h2>
+                </div>
+              </div>
+            </div>
+            <div  class="col-md-3">
+              <div class="probootstrap-donors text-center probootstrap-animate">
+                <div class="text">
+                  <h3 style="color: #ff2727">物资</h3>
+                  <h2><p style="color: #0b0b0b"><th:block th:text="${donation}"></th:block>件</p></h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="probootstrap-donors text-center probootstrap-animate">
+                <div class="text">
+                  <h3 style="color: #ff2727">善款</h3>
+                  <h2><p style="color: #0b0b0b"><th:block th:text="${money}"></th:block>元</p></h2>
+                </div>
+              </div>
+            </div>
+            <div  class="col-md-3">
+              <div class="probootstrap-donors text-center probootstrap-animate">
+                <div class="text">
+                  <h3 style="color: #ff2727">项目</h3>
+                  <h2><p style="color: #0b0b0b"><th:block th:text="${numnotice}"></th:block>个</p></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+      <section class="probootstrap-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+              <h2>他们现在急需您的帮助</h2>
+              <p class="lead">尽己所能，帮帮现在的他们</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
+              <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index<1}" class="probootstrap-image-text-block probootstrap-cause">
+                <figure>
+                  <img style="height: 174.23px;weight:293.33px" th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive">
+                </figure>
+                <div class="probootstrap-cause-inner">
+                  <div class="progress">
+                    <div th:if="${notice.nmoney==0}" class="progress-bar progress-bar-s2" th:data-percent="0"></div>
+                    <div th:if="${notice.nmoney!=0}" class="progress-bar progress-bar-s2" th:data-percent="${(notice.nmoney*100)/notice.money}"></div>
+                  </div>
+
+                  <div class="row mb30">
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Raised: ￥<span class="money" th:text="${notice.nmoney}"></span></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Goal: ￥<span class="money" th:text="${notice.money}"></span></div>
+                  </div>
+                  
+                  <h2><a th:href="@{/article(id=${notice.nid})}" th:text="${notice.ntitle}"></a></h2>
+                  <div class="probootstrap-date"><i class="icon-calendar"></i><th:block th:text="${notice.ntime}"></th:block></div>
+                  <p><th:block th:text="${notice.nintro}"></th:block></p>
+                  <form action="goAlipay" method="post">
+                    <input type="hidden" name="id"  th:value="${notice.nid}">
+                  <p><button type="submit" class="btn btn-primary btn-black">发起捐赠</button>
+                    <div class="form-group">
+                      <input type="number" required="required" class="form-control"  name="money" placeholder="捐款金额">
+                    </div>
+                  </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==1}" class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
+              <div class="probootstrap-image-text-block  probootstrap-cause">
+                <figure>
+                  <img style="height: 174.23px;weight:293.33px" th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive">
+                </figure>
+                <div class="probootstrap-cause-inner">
+                  <div class="progress">
+                    <div th:if="${notice.nmoney==0}" class="progress-bar progress-bar-s2" th:data-percent="0"></div>
+                    <div th:if="${notice.nmoney!=0}" class="progress-bar progress-bar-s2" th:data-percent="${(notice.nmoney*100)/notice.money}"></div>
+                  </div>
+
+                  <div class="row mb30">
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Raised: ￥<span class="money" th:text="${notice.nmoney}"></span></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Goal: ￥<span class="money" th:text="${notice.money}"></span></div>
+                  </div>
+                  
+                  <h2><a th:href="@{/article(id=${notice.nid})}" th:text="${notice.ntitle}"></a></h2>
+                  <div class="probootstrap-date"><i class="icon-calendar"></i><th:block th:text="${notice.ntime}"></th:block></div>
+                  <p><th:block th:text="${notice.nintro}"></th:block></p>
+                  <form action="goAlipay" method="post">
+                    <input type="hidden" name="id"  th:value="${notice.nid}">
+                    <p><button type="submit" class="btn btn-primary btn-black">发起捐赠</button>
+                    <div class="form-group">
+                      <input type="number" required="required" class="form-control"  name="money" placeholder="捐款金额">
+                    </div>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix visible-sm-block visible-xs-block"></div>
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==2}" class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
+              <div class="probootstrap-image-text-block  probootstrap-cause">
+                <figure>
+                  <img style="height: 174.23px;weight:293.33px" th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive">
+                </figure>
+                <div class="probootstrap-cause-inner">
+                  <div class="progress">
+                    <div th:if="${notice.nmoney==0}" class="progress-bar progress-bar-s2" data-percent="0"></div>
+                    <div th:if="${notice.nmoney!=0}" class="progress-bar progress-bar-s2" th:data-percent="${(notice.nmoney*100)/notice.money}"></div>
+                  </div>
+
+                  <div class="row mb30">
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Raised: ￥<span class="money" th:text="${notice.nmoney}"></span></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Goal: ￥<span class="money" th:text="${notice.money}"></span></div>
+                  </div>
+                  
+                  <h2><a th:href="@{/article(id=${notice.nid})}" th:text="${notice.ntitle}"></a></h2>
+                  <div class="probootstrap-date"><i class="icon-calendar"></i><th:block th:text="${notice.ntime}"></th:block></div>
+                  <p><th:block th:text="${notice.nintro}"></th:block></p>
+                  <form action="goAlipay" method="post">
+                    <input type="hidden" name="id"  th:value="${notice.nid}">
+                    <p><button type="submit" class="btn btn-primary btn-black">发起捐赠</button>
+                    <div class="form-group">
+                      <input type="number" required="required" class="form-control"  name="money" placeholder="捐款金额">
+                    </div>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>通过捐赠拯救他们的未来！ <a href="news">了解更多扶持项目</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <section class="probootstrap-section probootstrap-bg probootstrap-section-dark" style="background-image: url(static/img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+              <h2>最新捐赠者</h2>
+              <p class="lead">谢谢你们一直以来的支持</p>
+            </div>
+          </div>
+          <div class="row">
+            <div th:each="donation,donationStat:${dlist.list}" th:if="${donationStat.index<4}" class="col-md-3">
+              <div class="probootstrap-donors text-center probootstrap-animate">
+                <figure class="media">
+                  <img th:src="${donation.uimage}" alt="Free Bootstrap Template " class="img-responsive">
+                </figure>
+                <div class="text">
+                  <h3 th:text="${donation.username}"></h3>
+                  <p class="donated">Donated </p><span th:if="${donation.dmoney!=null}"  th:text="${donation.dmoney}+元+'       '+物资+':'+${donation.donations}"></span>
+                    <span th:if="${donation.dmoney==null}" class="money" th:text="具体+':'+${donation.donations}"></span>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="probootstrap-section  probootstrap-section-colored">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate">
+              <h2>他们的声音</h2>
+              <p class="lead">来来看看他们怎么说吧</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 probootstrap-animate">
+              <div class="owl-carousel owl-carousel-testimony owl-carousel-fullwidth">
+                <div th:each="comment,commentStat:${clist.list}" th:if="${commentStat.index<5}" class="item">
+
+                  <div class="probootstrap-testimony-wrap text-center">
+                    <figure>
+                      <img th:src="${comment.uimage}" alt="Free Bootstrap Template ">
+                    </figure>
+                    <blockquote class="quote">&ldquo;<th:block th:text="${comment.comment}"></th:block>&rdquo; <cite class="author"> &mdash; <span th:text="${comment.username}"></span></cite></blockquote>
+                  </div>
+
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+        
+      <section class="probootstrap-half">
+        <div class="image">
+          <div class="image-bg">
+            <img th:src="${notice.nimage}" alt="Free Bootstrap Template ">
+          </div>
+        </div>
+        <div class="text">
+          <div class="probootstrap-animate">
+            <h3>成功案例</h3>
+            <p><th:block th:text="${notice.ntitle}"></th:block></p>
+            <p><a href="causes" class="btn btn-primary btn-lg">了解更多</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="probootstrap-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 probootstrap-animate">
+              <h3>热门新闻</h3>
+              <ul th:each="notice,noticeStat:${nlist1.list}" th:if="${noticeStat.index<2}" class="probootstrap-news">
+                <li >
+                  <span class="probootstrap-date"><th:block th:text="${notice.ntime}"></th:block></span>
+                  <h3><a th:href="@{/article(id=${notice.nid})}"><th:block th:text="${notice.ntitle}"></th:block></a></h3>
+                  <div><img style="height: 138px;weight:138px" th:src="${notice.nimage}"></div>
+                </li>
+              </ul>
+              <p><a href="causes" class="btn btn-primary">查看更多新闻</a></p>
+            </div>
+            <div class="col-md-6 probootstrap-animate">
+              <h3>关于我们</h3>
+              <p><img src="/static/img/img_sm_2.jpg" alt="Free Bootstrap Template " class="img-responsive"></p>
+              <p>成人善事，其功更倍;动人善愿，其量无涯</p><p><a href="about" class="btn btn-primary">了解更多</a></p>
+            </div>
+            <div class="col-md-3 probootstrap-animate">
+              <h3>现况</h3>
+
+              <div class="owl-carousel owl-carousel-fullwidth">
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==0}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==1}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==2}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==3}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==4}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+                <div th:each="image,imageStat:${ilist.list}" th:if="${imageStat.index==5}" class="item">
+                  <a th:href="${image}" class="image-popup">
+                    <img th:src="${image}" alt="Free Bootstrap Template " class="img-responsive">
+                  </a>
+                </div>
+              </div>
+
+              <p class="text-center"><a href="gallery" class="btn btn-primary">浏览更多</a></p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>关于我们</h3>
+                <p>通过我们这个公益自助平台，我们希望可以让更多的人可以参加到公益社会，爱心社会的建设中来，以实现爱心献社会温暖暖人间的目标。</p>
+              </div>
+            </div>
+           
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>联系我们</h3>
+                <ul class="probootstrap-contact-info">
+                  <li><i class="icon-location2"></i> <span>广东省东莞市东莞理工学院</span></li>
+                  <li><i class="icon-mail"></i><span>c1063493030</span></li>
+                  <li><i class="icon-phone2"></i><span>+13433623007</span></li>
+                </ul>
+                
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>公益</h3>
+                <p>爱心是冬日里的一片阳光，使饥寒交迫的人分外感到人间的温暖。爱心是沙漠中的一泓泉水，使濒临绝境的人重新看到生活的希望。爱心是夜空中的一轮明月，使孤苦无依的人即刻获得心灵的慰藉。爱心是春天里的一场细雨，使心灵枯萎的人特别感到情感的滋润。爱心是夏日里的一阵清风，使心急如焚的人感到无比的凉爽。爱心是黑夜里的一座灯塔，使迷失方向的航船找到停靠的港湾</p>
+                <p><a href="donate" class="btn btn-primary">捐赠</a></p>
+              </div>
+            </div>
+           
+          </div>
+          <!-- END row -->
+          
+        </div>
+
+      </footer>
+
+    <script src="/static/js/scripts.min.js"></script>
+    <script src="/static/js/main.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+      <!-- jQuery -->
+      <script src="/static/backup/js/jquery.min.js"></script>
+      <!-- jQuery Easing -->
+      <script src="/static/backup/js/jquery.easing.1.3.js"></script>
+      <!-- Bootstrap -->
+      <script src="/static/backup/js/bootstrap.min.js"></script>
+      <!-- Waypoints -->
+      <script src="/static/backup/js/jquery.waypoints.min.js"></script>
+      <!-- Flexslider -->
+      <script src="/static/backup/js/jquery.flexslider-min.js"></script>
+      <!-- Carousel -->
+      <script src="/static/backup/js/owl.carousel.min.js"></script>
+      <!-- Magnific Popup -->
+      <script src="/static/backup/js/jquery.magnific-popup.min.js"></script>
+      <script src="/static/backup/js/magnific-popup-options.js"></script>
+      <!-- Counters -->
+      <script src="/static/backup/js/jquery.countTo.js"></script>
+      <!-- Main -->
+      <script src="/static/backup/js/main.js"></script>
+  </body>
+</html>

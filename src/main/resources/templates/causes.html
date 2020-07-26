@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles-merged.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <!--[if lt IE 9]>
+    <script src="/static/js/vendor/html5shiv.min.js"></script>
+    <script src="/static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+      <nav class="navbar navbar-default probootstrap-navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home" title="uiCookies:Enlight">Enlight</a>
+          </div>
+
+          <div id="navbar-collapse" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="home">首页</a></li>
+              <li><a href="news">爱心资讯</a></li>
+              <li class="active"><a href="causes">我们在路上</a></li>
+              <li><a href="specialnews">特别新闻</a></li>
+              <li><a href="about">关于我们</a></li>
+              <li><a href="testimonial">公益柜</a></li>
+              <li><a href="gallery">现场实况</a></li>
+              <li><a href="index">个人中心</a></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
+                <ul class="dropdown-menu">
+                  <li><a href="cause-single">优秀成员</a></li>
+                  <li><a href="comment">平台评价留言</a></li>
+                  <li><a href="donate">平台捐款</a></li>
+                </ul>
+              </li>
+              <li th:if="${session.username==null}" class="probootstra-cta-button last"><a href="login" class="btn btn-primary">登录</a></li>
+              <li th:if="${session.username!=null}" class="probootstra-cta-button last"><a href="#" class="btn btn-primary"><th:block th:text="${session.username}"></th:block></a></li>
+              <li th:if="${session.username!=null}"><a href="logout">退出</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(static/img/hero16.jpg)"  data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
+                <h1 class="probootstrap-heading probootstrap-animate">我们在路上 <span>我们已经开始行动起来了</span></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="probootstrap-section">
+        <div class="container">
+          <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==0}" class="row mb40">
+            <div class="col-md-6 col-md-push-6 probootstrap-animate">
+              <p><img th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive"></p>
+            </div>
+            <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
+              <h2 class="mb0"><a href=""><th:block th:text="${notice.ntitle}"></th:block></a></h2>
+              <p class="probootstrap-news-date"><th:block th:text="${notice.ntime}"></th:block></p> <p> <a th:href="@{/article(id=${notice.nid})}" class="btn btn-black">查看更多</a></p>
+            </div>
+          </div>
+
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==1}" class="row mb40">
+              <div class="col-md-6 probootstrap-animate">
+                <p><img th:src="${notice.nimage}"  alt="Free Bootstrap Template " class="img-responsive"></p>
+              </div>
+              <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
+                <h2 class="mb0"><a href=""><th:block th:text="${notice.ntitle}"></th:block></a></h2>
+                <p class="probootstrap-news-date"><th:block th:text="${notice.ntime}"></th:block></p>
+                <p><th:block th:text="${notice.nintro}"></th:block></p>
+                <p><span class="probootstrap-meta-share"> <a th:href="@{/article(id=${notice.nid})}" class="btn btn-black">查看更多</a></span></p>
+              </div>
+            </div>
+
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==2}" class="row mb40">
+              <div class="col-md-6 col-md-push-6 probootstrap-animate">
+                <p><img th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive"></p>
+              </div>
+              <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
+                <h2 class="mb0"><a href=""><th:block th:text="${notice.ntitle}"></th:block></a></h2>
+                <p class="probootstrap-news-date"><th:block th:text="${notice.ntime}"></th:block></p>
+                <p><th:block th:text="${notice.nintro}"></th:block></p>
+                <p><span class="probootstrap-meta-share"><a th:href="@{/article(id=${notice.nid})}" class="btn btn-black">查看更多</a></span></p>
+              </div>
+            </div>
+
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==3}" class="row mb40">
+              <div class="col-md-6 probootstrap-animate">
+                <p><img th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive"></p>
+              </div>
+              <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
+                <h2 class="mb0"><a href=""><th:block th:text="${notice.ntitle}"></th:block></a></h2>
+                <p class="probootstrap-news-date"><th:block th:text="${notice.ntime}"></th:block></p>
+                <p><th:block th:text="${notice.nintro}"></th:block></p>
+                <p><span class="probootstrap-meta-share"><a th:href="@{/article(id=${notice.nid})}" class="btn btn-black">查看更多</a></span></p>
+              </div>
+            </div>
+
+            <div th:each="notice,noticeStat:${nlist.list}" th:if="${noticeStat.index==4}" class="row mb40">
+              <div class="col-md-6 col-md-push-6 probootstrap-animate">
+                <p><img th:src="${notice.nimage}" alt="Free Bootstrap Template " class="img-responsive"></p>
+              </div>
+              <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
+                <h2 class="mb0"><a href=""><th:block th:text="${notice.ntitle}"></th:block></a></h2>
+                <p class="probootstrap-news-date"><th:block th:text="${notice.ntime}"></th:block></p>
+                <p><th:block th:text="${notice.nintro}"></th:block></p>
+                <p><span class="probootstrap-meta-share"><a th:href="@{/article(id=${notice.nid})}" class="btn btn-black">查看更多</a></span></p>
+              </div>
+            </div>
+        </div>
+        <div class="page">
+          <ul class="pager">
+            <li class="num"><a th:href="@{/causes(pageNum=1,id=${id})}">首页</a></li>
+            <li class="num"><a th:if="${nlist.pageNum} > '1'" id="previouspage" th:href="@{/causes(pageNum=${nlist.prePage})}" class="previous">
+              &lt;&lt;</a></li>
+            <th:block class="pagination" th:each="pagenum:${pagenums}">
+              <!--	${#httpServletRequest.getRequestURL()}表示当前url，href中也可以不写，如下直接加参数		 -->
+              <li class="num"><a class="active" style="color: #ff2727"  th:if="${nlist.pageNum==pagenum}" th:href="@{/causes(pageNum=${pagenum})}">[[${pagenum}]]</a></li>
+
+              <li class="num"><a class="num" th:if="${nlist.pageNum!=pagenum}"th:class="'pagenum'+${pagenum}" th:href="@{/causes(pageNum=${pagenum})}">[[${pagenum}]]</a></li>
+            </th:block>
+            <li class="num"><a class="next" th:if="${nlist.pageNum} < ${nlist.pages}" id="nextpage" th:href="@{/causes(pageNum=${nlist.nextPage})}" aria-label="Next">
+              &gt;&gt;</a></li>
+            <li class="num"><a id="endpage" th:href="@{/causes(pageNum=${nlist.pages})}">末页</a></li>
+            <li class="num"><span aria-label="Next">相关记录[[${nlist.total}]]条，共[[${nlist.pages}]]页。</span></li>
+          </ul>
+        </div>
+      </section>
+
+      
+
+      <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>关于我们</h3>
+                <p>通过我们这个公益自助平台，我们希望可以让更多的人可以参加到公益社会，爱心社会的建设中来，以实现爱心献社会温暖暖人间的目标。</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>联系我们</h3>
+                <ul class="probootstrap-contact-info">
+                  <li><i class="icon-location2"></i> <span>广东省东莞市东莞理工学院</span></li>
+                  <li><i class="icon-mail"></i><span>c1063493030</span></li>
+                  <li><i class="icon-phone2"></i><span>+13433623007</span></li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>公益</h3>
+                <p>爱心是冬日里的一片阳光，使饥寒交迫的人分外感到人间的温暖。爱心是沙漠中的一泓泉水，使濒临绝境的人重新看到生活的希望。爱心是夜空中的一轮明月，使孤苦无依的人即刻获得心灵的慰藉。爱心是春天里的一场细雨，使心灵枯萎的人特别感到情感的滋润。爱心是夏日里的一阵清风，使心急如焚的人感到无比的凉爽。爱心是黑夜里的一座灯塔，使迷失方向的航船找到停靠的港湾</p>
+                <p><a href="donate" class="btn btn-primary">捐赠</a></p>
+              </div>
+            </div>
+
+          </div>
+          <!-- END row -->
+
+        </div>
+
+      </footer>
+
+    <script src="/static/js/scripts.min.js"></script>
+    <script src="/static/js/main.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.RoleDao">
+
+    <insert id="adduserrole" parameterType="UserRole" >
+        insert into UserRole (userid,roleid) values (#{userid},#{roleid});
+
+    </insert>
+    <select id="selectRolename" resultType="UserRoleVo">
+        select role.*,user.* from role,userrole,user where role.rid = userrole.roleid and user.uid = userrole.userid  and user.uid in
+        <foreach collection="userList" item="user" index="index"
+                 open="(" close=")" separator=",">
+            #{user.uid}
+        </foreach>
+    </select>
+    <select id="selectRoleOne" resultType="userrolevo" parameterType="Integer">
+         select role.*,user.* from role,userrole,user where role.rid = userrole.roleid and user.uid = userrole.userid  and user.uid = #{uid}
+    </select>
+    <update id="alterUserRole" parameterType="userrole">
+        update userrole set roleid = #{roleid} where userid = #{userid}
+    </update>
+</mapper>

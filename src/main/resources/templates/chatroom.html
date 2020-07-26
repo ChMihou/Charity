@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/image/code.png">
+    <title>聊天室</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+</head>
+<css>
+
+</css>
+<body>
+
+
+<!--   socket url -->
+<input  type="hidden" th:value="${path}" id="path"  style="display: none" />
+<!--  用户名 -->
+<input  type="hidden" th:value="${username}" id="username"  style="display: none" />
+
+
+<!-- ===============================================================================================================  -->
+<br>
+
+<!--<input  type="hidden" value="所有人" id="onLineUser" text="所有人" style="display: none" />-->
+
+
+<!-- ===============================================================================================================  -->
+<!--    overflow-y :auto;overflow :auto;  宽高自适应滚动条-->
+<span id = "miqx" style="width:80%;height:300px; background-color: papayawhip;float:left;overflow-y :auto;overflow :auto;">
+    <li class="layui-btn-warm layui-btn-xs"style="text-align: center">群聊信息</li>
+</span>
+<span id = "miax" style="width:20%;background-color: #F2F2F2;float:left;overflow-y :auto;overflow :auto;">
+    <li class="layui-btn layui-btn-danger" style="text-align: center">在线列表</li>
+</span>
+
+<textarea id="text" placeholder="请输入内容-发送消息[Ctrl+回车键]" rows="4.5%" cols="60%"></textarea>
+
+
+<input class="layui-btn layui-btn-normal layui-btn-mini" onclick="send()" type="button" value="发送">
+<td>消息发送至:</td>
+<select id="onLineUser" size="1" style="width: 10%;height:30px">
+    <option  value="所有人">所有人</option>
+</select>
+
+
+<div  id = "mizx"  style="width:80%;height:300px;background-color: #FFEEE8;float:left;overflow-y :auto;overflow :auto;">
+    <li class="layui-btn-warm layui-btn-xs" style="text-align: center">私聊信息</li>
+    <!--    <li style="text-align: right">靠右</li>
+        <li style="text-align: left" >靠左</li>-->
+</div>
+<br>
+<br>
+
+<!-- ===============================================================================  -->
+
+</body>
+<script type="text/javascript">
+    function uaername(name){
+        alert(name)
+    }
+    var miqx = $("#miqx");  //群聊
+    var miax = $("#miax");   //在线列表
+    var mizx = $("#mizx");  //私聊
+    var onLineUser = $("#onLineUser");    //发送人select选择框
+
+    var webSocket;
+    var commWebSocket;http:
+        if ("WebSocket" in window){
+            //192.168.100.7:8080/
+            webSocket = new WebSocket(document.getElementById('path').value +document.getElementById('username').value);
+            //连通之后的回调事件
+            webSocket.onopen = function()
+            {
+                miqx.html(miqx.html()+" <li style='text-align: center'>系统消息:[登陆成功]</li>")
+            };
+
+            //接收后台服务端的消息
+            webSocket.onmessage = function (evt)
+            {
+                var received_msg = evt.data;           //接收到的数据
+                var obj = JSON.parse(received_msg);    //json数据
+                var messageType = obj.messageType;      //数据类型（1上线/2下线/3在线名单/4发信息)
+                var onlineName = obj.username;         //用户名
+                var number = obj.number;               //在线人数
+
+                //上线通知+在线列表刷新
+                if(obj.messageType==1){
+                    if((onlineName != $("#username").val())){ //展示除不等于自己的所有用户
+                        miqx.html(miqx.html()+" <li style='text-align: center'>系统消息:["+ onlineName+"]上线了"+"</li>");
+                        onLineUser.html(onLineUser.html()+"<option  value='"+ onlineName +"'>"+ onlineName +"</option>");
+                    }
+                    var onlineName = obj.onlineUsers;  //所有在线用户
+                    miax.html("<li  style='text-align: center'>在线用户--["+ onlineName.length  +"]</li>");
+                    for(var i=0;i<onlineName.length;i++){
+                        if((onlineName[i] != $("#username").val())){ //展示除不等于自己的所有用户
+                            miax.html(miax.html()+"<li style='text-align: left'>---"+ onlineName[i] +"</li>" );
+                        }
+                    }
+                    //miax.html(miax.html()+" <li style='text-align: center'>"+ onlineName +"</li>");
+                }
+                //下线通知+在线列表刷新
+                else if(obj.messageType==2){
+                    if((onlineName != $("#username").val())){ //展示除不等于自己的所有用户
+                        miqx.html(miqx.html()+" <li style='text-align: center'>系统消息:["+ onlineName+"]下线了"+"</li>");
+                    }
+                    var onlineName = obj.onlineUsers;  //剩余所有在线用户
+                    miax.html("<li class='layui-icon' style='text-align: center'>在线用户--["+ onlineName.length  +"]</li>");
+                    onLineUser.html("<option  value='所有人'>所有人</option>");
+                    for(var i=0;i<onlineName.length;i++){
+                        if((onlineName[i] != $("#username").val())){ //展示除不等于自己的所有用户
+                            miax.html(miax.html()+"<li style='text-align: left'>---"+ onlineName[i] +"</li>" );
+                            onLineUser.html(onLineUser.html()+"<option  value='"+ onlineName[i] +"'>"+ onlineName[i] +"</option>");
+                        }
+                    }
+                }
+                //在线列表
+                else if(obj.messageType==3){
+                    var onlineName = obj.onlineUsers; //所有在线用户
+                    miax.html("<li style='text-align: center'>在线用户--["+ onlineName.length +"]</li>");
+                    onLineUser.html("<option  value='所有人'>所有人</option>");
+                    for(var i=0;i<onlineName.length;i++){
+                        if(onlineName[i] != $("#username").val()){ //展示除不等于自己的所有用户
+                            miax.html(miax.html()+ " <li style='text-align: left'>---"+ onlineName[i] +"</li>" );
+                            onLineUser.html(onLineUser.html()+"<option  value='"+ onlineName[i] +"'>"+ onlineName[i] +"</option>");
+                        }
+                    }
+                }
+                //信息接收
+                else{
+                    var time2 = new Date();
+                    var date = time2.getHours()+":"+time2.getMinutes()+":"+ time2.getSeconds();  //时间
+                    if(obj.fromusername != $("#username").val() ){    //自己不接自己的消息
+                        if(obj.tousername=="所有人"){
+                            //发给所有人
+                            miqx.html(miqx.html()+" <li style='text-align: left'>["+ obj.fromusername+"]说:-"+obj.textMessage +"</li>");
+                        }else {
+                            //发给指定人
+                            mizx.html(mizx.html()+" <li style='text-align: left'>["+ obj.fromusername+"]说:-"+obj.textMessage+"</li>");
+                        }
+                    }
+                    //setMessageInnerHTML(obj.fromusername+"对"+obj.tousername+"说："+obj.textMessage);
+                }
+            };
+
+            //连接关闭的回调事件
+            webSocket.onclose = function()
+            {
+                console.log("连接已关闭...");
+                setMessageInnerHTML("连接已经关闭....");
+            };
+        }
+        else{
+            // 浏览器不支持 WebSocket
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    function closeWebSocket() {
+        //直接关闭websocket的连接
+        webSocket.close();
+    }
+
+    //信息发送+ 页面显示发送信息
+    $(document).keyup(function(event){
+        //浏览器适应
+        if(event.ctrlKey && event.which == 13 || event.which == 10) {
+            send();
+        } else if (event.shiftKey && event.which==13 || event.which == 10) {
+            send();
+        }
+    });
+
+    //信息发送+ 页面显示发送信息
+    function send() {
+        var usernameX = $("#username").val()         //发送数据人
+        var usernameY = $("#onLineUser").val();      //接收数据人
+        var message = $("#text").val();               //发送的数据
+        if(usernameY=="所有人"){
+            usernameY = "All";
+            /*  <li style="text-align: center">群聊信息</li>
+             <li style="text-align: right">靠右</li>
+             <li style="text-align: left" >靠左</li>*/
+            miqx.html(miqx.html()+" <li style='text-align: right'>"+ message+" -- ["+usernameX +"]</li>");
+        }
+        else{
+            mizx.html(mizx.html()+" <li style='text-align: right'>"+ "你对-["+usernameY+"]说:-"+message+"</li>");
+        }
+        var message = {
+            "message":message,
+            "username":usernameX,
+            "to":usernameY
+        };
+        //发送数据
+        webSocket.send(JSON.stringify(message));
+        $("#text").val("");
+    }
+
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('你以' + (this.checked ? '上线' : '下线'), {
+                offset: '6px'
+            });
+            //layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+    });
+</script>
+</html>
+
+

@@ -1,0 +1,191 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="/static/css/font.css">
+        <link rel="stylesheet" href="/static/css/xadmin.css">
+        <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/xadmin.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">用戶列表</a>
+          </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body ">
+                        <form class="layui-form layui-col-space5" action="member-list" method="post">
+                            <div class="layui-inline layui-show-xs-block">
+                                <input type="text" name="search" th:value="${search}" placeholder="请输入用户名字关键字查询" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-inline layui-show-xs-block">
+                                <button class="layui-btn"  lay-submit="" lay-filter="sreach" type="submit"><i class="layui-icon">&#xe615;</i></button>
+                            </div>
+                        </form>
+                    </div>
+                        <div class="layui-card-header" th:if="session.permisssionlevel==0||session.permisssionlevel==1">
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','/member-add')"><i class="layui-icon"></i>添加</button>
+                        </div>
+                    <div class="layui-card-body layui-table-body layui-table-main">
+                        <table class="layui-table layui-form">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>头像</th>
+                                <th>姓名</th>
+                                <th>用户名</th>
+                                <th>电子邮箱</th>
+                                <th>手机号码</th>
+                                <th>地址</th>
+                                <th>身份</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="user:${ulist.list}">
+                                    <td th:text="${user.uid}"></td>
+                                    <td><img style="height: 50px;weight:50px" th:src="${user.uimage}"></td>
+                                    <td th:text="${user.uname}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:text="${user.uemail}"></td>
+                                    <td th:text="${user.uiphone}"></td>
+                                    <td th:text="${user.uaddress}"></td>
+                                    <td th:text="${user.rname}"></td>
+                                    <td class="td-status">
+                                        <a title="编辑" th:onclick="xadmin.open('编辑','edituser?id=[[${user.uid}]]')" href="javascript:;" >
+                                            <i class="layui-icon">&#xe642;</i>
+                                        </a>
+                                        <a title="删除" th:onclick='member_del(this, "[[${user.uid}]]")' href="javascript:;">
+                                            <i class="layui-icon">&#xe640;</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-card-body ">
+                        <div class="page">
+                            <div>
+                                <a aria-label="Previous" id="firstpage" th:href="@{/member-list(pageNum=1,search=${search})}">首页</a>
+                                    <a th:if="${ulist.pageNum} > '1'" id="previouspage" th:href="@{/member-list(pageNum=${ulist.prePage},search=${search})}" aria-label="Previous">
+                                        &lt;&lt;</a>
+                            <th:block class="pagination" th:each="pagenum:${pagenums}">
+                                <!--	${#httpServletRequest.getRequestURL()}表示当前url，href中也可以不写，如下直接加参数		 -->
+                                <a class="num layui-btn layui-btn-warm" th:if="${ulist.pageNum==pagenum}"  th:href="@{/member-list(pageNum=${pagenum},search=${search})}">[[${pagenum}]]</a>
+                                <a class="num" th:if="${ulist.pageNum!=pagenum}" th:class="'pagenum'+${pagenum}" th:href="@{/member-list(pageNum=${pagenum},search=${search})}">[[${pagenum}]]</a>
+                            </th:block>
+                                    <a class="next" th:if="${ulist.pageNum} < ${ulist.pages}" id="nextpage" th:href="@{/member-list(pageNum=${ulist.nextPage},search=${search})}" aria-label="Next">
+                                        &gt;&gt;</a>
+                                    <a id="endpage" th:href="@{/member-list(pageNum=${ulist.pages},search=${search})}">末页</a>
+                                <span aria-label="Next">相关用户记录[[${ulist.total}]]条，共[[${ulist.pages}]]页。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script>
+        /*用户-停用*/
+        function member_stop(obj, id){
+            if($(obj).attr('title')=='停用') {
+                layer.confirm('确认要停用此用户吗？',function(){
+                    //发异步把用户状态进行更改
+                    $.ajax({
+                        type : "POST",
+                        url : "/updatestatus",
+                        data : { "id" : id,
+                            "status" : 0 },
+                        dataType : "json",
+                        success : function(state){
+                            if (state == "1") {
+                                $(obj).attr('title','启用')
+                                $(obj).find('i').html('&#xe62f;');
+                                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                                layer.msg('已停用!',{icon: 5,time:1000});
+                            }  else {
+                                layer.msg("操作失败！");
+                            }
+                        },
+                        error:function(XMLHttpRequest, textStatus){
+                            alert("状态代码：" + XMLHttpRequest.status
+                                + "  状态信息：" + textStatus
+                                + "  请联系管理员解决");
+                        }
+                    });
+
+                });
+
+            } else {
+                layer.confirm('确认要启用此用户吗？',function(){
+                    $.ajax({
+                        type : "POST",
+                        url : "/updatestatus",
+                        data : { "id" : id,
+                            "status" : 1 },
+                        dataType : "json",
+                        success : function(state){
+                            if (state == "1") {
+                                $(obj).attr('title','停用')
+                                $(obj).find('i').html('&#xe601;');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                                layer.msg('已启用!',{icon: 6,time:1000});
+                            }  else {
+                                layer.msg("操作失败！");
+                            }
+                        },
+                        error:function(XMLHttpRequest, textStatus){
+                            alert("状态代码：" + XMLHttpRequest.status
+                                + "  状态信息：" + textStatus
+                                + "  请联系管理员解决");
+                        }
+                    });
+                });
+            }
+        }
+
+        /*用户-删除*/
+        function member_del(obj,id){
+            layer.confirm('确认要删除吗？',function(index){
+                //发异步删除数据
+                $.ajax({
+                    type : "POST",
+                    url : "deleteuser",
+                    data : { "id" : id},
+                    dataType : "json",
+                    success : function(state){
+                        if (state == "1") {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:5000});
+                            xadmin.father_reload();
+                        }  else {
+                            layer.msg("操作失败！");
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus){
+                        alert("状态代码：" + XMLHttpRequest.status
+                            + "  状态信息：" + textStatus
+                            + "  请联系管理员解决");
+                    }
+                });
+
+            });
+        }
+</script>
+</html>

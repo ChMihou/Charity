@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="/static/css/font.css">
+        <link rel="stylesheet" href="/static/css/xadmin.css">
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/xadmin.js"></script>
+        <!--[if lt IE 9]>
+        <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <form class="layui-form" id="form" action="" enctype="multipart/form-data">
+                <div class="layui-form-item">
+                    <input type="hidden" th:id="id" name="id" th:value="${id}">
+                        <label class="layui-form-label">图片上传：</label>
+                        <input  type="file" name="fileName" id="filename" accept="image/png, image/jpeg, image/jpg" onchange="checkImage()">
+                    </div>
+                <div id="showImage"></div>
+                <div id="onLoadImage"></div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" id="submitBtn" onclick="checkSubmit()">上传</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        //检查图片
+        function checkImage() {
+            var fileName=$("#filename").val();
+            fileName=fileName.replace("D:\\java\\Charity\\src\\main\\resources\\static\\images","");
+            var flag=true;
+            if(fileName==""){
+                flag=false;
+                alert("请选择图片");
+            }
+            else{
+                var size = $("#filename")[0].files[0].size;
+                if(size/100000>100){
+                    flag=false;
+                    alert("图片大小不能超过10M");
+                }
+            }
+            if(flag){
+                onLoadImage();
+            }
+            else{//清除input type=file的显示内容
+                $("#filename").val("");
+            }
+            return flag;
+        }
+
+        //预览图片
+        function onLoadImage() {
+            var file=$('#filename').get(0).files[0];
+            var reader = new FileReader();
+            //将文件以Data URL形式读入页面
+            reader.readAsDataURL(file);
+            reader.function(e)
+            {
+                //显示文件
+                $("#onLoadImage").html('<img src="' + this.result +'" alt="" />');
+            }
+        }
+
+        /*上传图片
+       详细参考链接：https://www.cnblogs.com/qiumingcheng/p/6854933.html
+       1.processData设置为false。因为data值是FormData对象，不需要对数据做处理。
+       2.<form>标签添加enctype="multipart/form-data"属性。
+       3.cache设置为false，上传文件不需要缓存。
+       4.contentType设置为false，不设置contentType值，因为是由<form>表单构造的FormData对象，且已经声明了属性enctype="multipart/form-data"，所以这里设置为false。
+       */
+        function checkSubmit() {
+            var formdata=new FormData();
+            formdata.append('fileName',$('#filename').get(0).files[0]);
+            formdata.append('id',$('#id').val());
+            $.ajax({
+                async: false,
+                type: 'POST',
+                url: "addimage",
+                data:formdata,
+                contentType:false,//ajax上传图片需要添加
+                processData:false,//ajax上传图片需要添加
+                success: function (data) {
+                    if(data.hasOwnProperty("relativePath")){
+                        $("#showImage").html("<img src='"+data.relativePath+"'/>");
+                        xadmin.close();
+                        window.parent.location.reload();
+                    }
+                    else {
+                        $("#showImage").html("上传失败");
+                    }
+                    alert(data.result_msg);
+                },
+                error: function (e) {
+                    alert("error");
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript" src="/static/js/xcity.js"></script>
+    </body>
+</html>

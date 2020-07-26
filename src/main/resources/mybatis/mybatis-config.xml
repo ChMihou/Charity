@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置文件的根元素 -->
+<configuration>
+    <!--配置全局属性-->
+    <settings>
+        <!--使用jdbc的getGeneratedKeys获取数据库自增主键值-->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!--使用列标签替换列别名 默认未true-->
+        <setting name="useColumnLabel" value="true" />
+        <!--开启驼峰式命名转换：Table{create_time} -> Entity{createTime}-->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+    <!-- 别名定义 -->
+    <typeAliases>
+        <package name="com.charity.entity" />
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="offsetAsPageNum" value="true"/>
+            <!-- rowBoundsWithCount设置为true时，使用 RowBounds 分页会进行 count 查询。 -->
+            <property name="rowBoundsWithCount" value="true"/>
+            <!-- pageSizeZero 为 true， 当 pageSize=0 或者 RowBounds.limit = 0 就会查询出全部的结果 -->
+            <property name="pageSizeZero" value="true"/>
+            <!-- reasonable 为 true，这时如果 pageNum<=0 会查询第一页，如果 pageNum>总页数 会查询最后一页 -->
+            <property name="reasonable" value="true"/>
+            <property name="returnPageInfo" value="check"/>
+        </plugin>
+    </plugins>
+</configuration>

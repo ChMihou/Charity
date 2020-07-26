@@ -1,0 +1,119 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin2.2</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
+</head>
+    <body>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <form class="layui-form" action="" id="add">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物资名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="donations" th:value="${donation.donations}" id="donations" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物资用途：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="daddress" th:value="${donation.daddress}" id="daddress" lay-verify="required" placeholder="请输入物资流向" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">可分配后再编辑填写</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物资捐赠人：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="dusername" th:value="${username}" id="dusername" lay-verify="required" placeholder="请输入捐赠人" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">捐赠善款：</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="dmoney" th:value="${donation.dmoney}" id="dmoney"  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <input type="hidden" th:value="${donation.dsid}" th:id="dsid" th:name="dsid">
+                <input type="hidden" th:value="${donation.did}" th:id="did" th:name="did">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">获得积分：</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="score" th:value="${score}" id="score" oninput="if(value>100)value=100;if(value.length>3)value=value.slice(0,3);if(value<0)value=0"  lay-verify="required" placeholder="请输入积分" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">0~100</div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        layui.use(['form','code'], function(){
+            form = layui.form;
+
+            layui.code();
+
+            $('#start').xcity();
+
+        });
+
+        layui.use('form', function(){
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function(data)
+            {
+                var donations = $("#donations").val();
+                var dusername = $("#dusername").val();
+                var daddress = $("#daddress").val();
+                var score = $("#score").val();
+                var dmoney = $("#dmoney").val();
+                var dsid = $("#dsid").val();
+                var did = $("#did").val();
+                $.ajax(
+                    {
+                        url:"editdonation",
+                        type:"POST",
+                        data:{donations:donations,dusername:dusername,daddress:daddress,score:score,dmoney:dmoney,did:did,dsid:dsid},
+                        success : function (data) {
+                            if (data == "1") {
+                                layer.alert("更新成功", {
+                                    icon: 6
+                                }, function() {
+
+                                    window.parent.layer.closeAll();
+                                    window.parent.location.reload();
+                                });
+                            } else if (data == "3") {
+                                layer.msg("用户名错误");
+                            } else {
+                                layer.msg("操作失败");
+                            }
+                        }
+
+                    }
+                );
+                //Demo
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript" src="/static/js/xcity.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,156 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="/static/css/font.css">
+        <link rel="stylesheet" href="/static/css/xadmin.css">
+        <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/xadmin.js"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <form class="layui-form" id="form">
+                <div class="layui-form-item">
+                    <label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span>用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_username" th:value="${user.username}"  name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    <div class="layui-form-item">
+                        <label for="L_nicename" class="layui-form-label">
+                            <span class="x-red">*</span>真实姓名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_nicename" th:value="${user.uname}" name="nicename"  required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <input th:value="${id}" type="hidden">
+                    <div class="layui-form-item">
+                        <label for="L_pass" class="layui-form-label">
+                            <span class="x-red">*</span>密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" id="L_pass" name="pass" th:value="${user.upassword}" required="" lay-verify="pass" autocomplete="off" class="layui-input"></div>
+                        <div class="layui-form-mid layui-word-aux">6到16个字符</div></div>
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label">
+                            <span class="x-red">*</span>确认密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" id="L_repass" name="repass" th:value="${user.upassword}" required="" lay-verify="repass" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="sex" class="layui-form-label">
+                            <span class="x-red">*</span>用户性别</label>
+                        <div class="layui-input-inline">
+                            <select id="sex" name="usex" required="" lay-verify="required">
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_email" class="layui-form-label">
+                            <span class="x-red">*</span>邮箱</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_email" name="email" th:value="${user.uemail}" required="" lay-verify="email" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_mobile" class="layui-form-label">
+                            <span class="x-red">*</span>手机号码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_mobile" name="mobile" th:value="${user.uiphone}" required="" lay-verify="mobile" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item x-city" id="start">
+                        <label class="layui-form-label">城市</label>
+                        <div class="layui-input-inline">
+                            <select name="province" lay-filter="province">
+                                <option value="">请选择省</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="city" lay-filter="city">
+                                <option value="">请选择市</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="area" lay-filter="area">
+                                <option value="">请选择县/区</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_address" class="layui-form-label">具体地址</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_address" name="address" required="" lay-verify="address" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label"></label>
+                        <button class="layui-btn" lay-filter="add" lay-submit="" type="button">修改</button></div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/xcity.js"></script>
+    <script>
+
+        layui.use(['form','code'], function(){
+            form = layui.form;
+
+            layui.code();
+
+            $('#start').xcity();
+
+        });
+
+        layui.use(['form', 'layer','jquery'], function() {
+            $ = layui.jquery;
+            var form = layui.form,
+                layer = layui.layer;
+
+            //自定义验证规则
+            form.verify({
+                pass: [/(.+){6,16}$/, '密码必须6到16位'],
+                repass: function(value) {
+                    if ($('#L_pass').val() != $('#L_repass').val()) {
+                        return '两次密码不一致';
+                    }
+                },
+                mobile: [/^[1][3,4,5,7,8][0-9]{9}$/, '手机格式错误']
+            });
+            //监听提交
+            form.on('submit(add)', function(data) {
+                console.log(data);
+                $.ajax({
+                    type : "POST",
+                    url : "edituser",
+                    data : $('#form').serialize(),
+                    dataType : "json",
+                    success : function(state){
+                        if (state == "1") {
+                            layer.alert("修改成功", {
+                                icon: 6
+                            }, function() {
+                                //关闭当前frame
+                                xadmin.close();
+                                // 可以对父窗口进行刷新
+                                xadmin.father_reload();
+                            });
+                        } else{
+                            layer.msg("操作失败");
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus){
+                        alert("状态代码：" + XMLHttpRequest.status
+                            + "  状态信息：" + textStatus
+                            + "  请联系管理员解决");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    </body>
+</html>

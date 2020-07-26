@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.charity.dao.AwardDao">
+    <select id="SelectPersonAward" resultType="UserAwardVo" parameterType="Integer">
+        select user.* ,award.* from user,award where user.uid = award.auid
+        <if test="auid!=null">
+          and  award.auid = #{auid}
+        </if>
+        order by award.aid desc
+    </select>
+    <insert id="AddAward" parameterType="Award">
+        insert into award(auid,atime,aname) values (#{auid},#{atime},#{aname});
+    </insert>
+    <delete id="deleteAward" parameterType="Integer">
+        delete from award where aid = #[aid];
+    </delete>
+    <update id="UpdateAcomment" parameterType="award" >
+        update award set acomment=#{acomment} where aid = #{aid}
+    </update>
+</mapper>

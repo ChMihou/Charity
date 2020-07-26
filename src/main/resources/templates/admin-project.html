@@ -1,0 +1,215 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5" action="admin-project" method="post">
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input type="text" class="layui-input" placeholder="请输入标题关键字查询" name="key" id="key" th:value="${key}"></div>
+                        <div th:if="${session.permisssionlevel<4}" class="layui-input-inline layui-show-xs-block">
+                            <select name="check" th:id="check" th:value="${value}">
+                                <option value="">审核状态</option>
+                                <option value="1">通过审核</option>
+                                <option value="0">未审核</option>
+                                <option value="2">审核未通过</option>
+                                <option value="3">草稿</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="sreach">
+                                <i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-header">
+
+                    <button th:if="${session.permisssionlevel==3||session.permisssionlevel<2}" class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+
+                    <button th:if="${session.permisssionlevel==3||session.permisssionlevel<2}" class="layui-btn" th:onclick="xadmin.open('添加文章','article-add?nselect=2')"><i class="layui-icon">&#xe654;</i>添加</button>
+
+                </div>
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
+                            </th>
+                            <th>ID</th>
+                            <th>题目</th>
+                            <th>作者</th>
+                            <th>发布时间</th>
+                            <th>目标筹款</th>
+                            <th>已筹善款</th>
+                            <th th:if="${session.permisssionlevel<4}">审核状态</th>
+                            <th>操作</th>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="notice:${nlist.list}">
+                            <td>
+                                <input type="checkbox" name="id" th:value="${notice.nid}"   lay-skin="primary">
+                            </td>
+
+                            <td th:text="${notice.nid}"></td>
+                            <td th:text="${notice.ntitle}"></td>
+                            <td th:text="${notice.nauthor}"></td>
+                            <td th:text="${notice.ntime}"></td>
+                            <td th:text="${notice.money}"></td>
+                            <td th:text="${notice.nmoney}"></td>
+
+                            <td  th:if="${notice.nflag==0&&session.permisssionlevel<4}">未审核</td>
+
+                            <td  th:if="${notice.nflag==1&&session.permisssionlevel<4}">通过审核</td>
+
+                            <td  th:if="${notice.nflag==2&&session.permisssionlevel<4}">审核不通过</td>
+
+                            <td  th:if="${notice.nflag==3&&session.permisssionlevel<4}">草稿</td>
+
+                            <td class="td-manage">
+                                <button class="layui-btn layui-btn-warm layui-btn-xs"  th:onclick="xadmin.open('查看','read-article?id=[[${notice.nid}]]')" ><i class="layui-icon">&#xe705;</i>查看</button>
+
+                                <button th:if="${session.permisssionlevel==3||session.permisssionlevel<2}" class="layui-btn layui-btn layui-btn-xs"  th:onclick="xadmin.open('编辑','edit-article?id=[[${notice.nid}]]')" ><i class="layui-icon">&#xe642;</i>编辑</button>
+
+                                <button th:if="${session.permisssionlevel<3}" class="layui-btn layui-btn-warm layui-btn-xs"  th:onclick="xadmin.open('审核','check-article?id=[[${notice.nid}]]')" ><i class="layui-icon">&#xe642;</i>审核</button>
+
+                                <button th:if="${session.permisssionlevel==3||session.permisssionlevel<2}" class="layui-btn-danger layui-btn layui-btn-xs"  th:onclick="member_del(this,'[[${notice.nid}]]')" href="javascript:;" ><i class="layui-icon">&#xe640;</i>删除</button>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <a aria-label="Previous" id="firstpage" th:href="@{/admin-project(pageNum=1,key=${key},check=${check})}">首页</a>
+                            <a th:if="${nlist.pageNum} > '1'" id="previouspage" th:href="@{/admin-project(pageNum=${nlist.prePage},key=${key},check=${check})}" aria-label="Previous">
+                                &lt;&lt;</a>
+                            <th:block class="pagination" th:each="pagenum:${pagenums}">
+                                <a class="num layui-btn layui-btn-warm" th:if="${nlist.pageNum==pagenum}" th:href="@{/admin-project(pageNum=${pagenum},key=${key},check=${check})}">[[${pagenum}]]</a>
+
+                                <a class="num" th:if="${nlist.pageNum!=pagenum}"th:class="'pagenum'+${pagenum}" th:href="@{/admin-project(pageNum=${pagenum},key=${key},check=${check})}">[[${pagenum}]]</a>
+                            </th:block>
+                            <a class="next" th:if="${nlist.pageNum} < ${nlist.pages}" id="nextpage" th:href="@{/admin-project(pageNum=${nlist.nextPage},key=${key},check=${check})}" aria-label="Next">
+                                &gt;&gt;</a>
+                            <a id="endpage" th:href="@{/admin-project(pageNum=${nlist.pages},key=${key},check=${check})}">末页</a>
+                            <span aria-label="Next">相关记录[[${nlist.total}]]条，共[[${nlist.pages}]]页。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/static/js/xcity.js"></script>
+<script>
+    //监听全选
+    layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var  form = layui.form;
+
+
+        // 监听全选
+        form.on('checkbox(checkall)', function(data){
+
+            if(data.elem.checked){
+                $('tbody input').prop('checked',true);
+            }else{
+                $('tbody input').prop('checked',false);
+            }
+            form.render('checkbox');
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+
+    });
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+
+            $.ajax(
+                {
+                    url:"deleteOneNotice",
+                    type:"POST",
+                    data:{"id":id},
+                    dataType:"json",
+                    success : function (data) {
+
+                    }
+                }
+            );
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
+            window.parent.location.reload();
+        });
+    }
+
+    function delAll (argument) {
+        var ids = [];
+
+        // 获取选中的id
+        $('tbody input').each(function(index, el) {
+            if($(this).prop('checked')){
+                ids.push($(this).val());
+            }
+        });
+
+        layer.confirm('确认要删除吗？'+ids.toString(),function(index){
+            //捉到所有被选中的，发异步进行删除
+            var checkedList = new Array(); //定义一个数组
+            $("input[name='id']:checked").each(function() {
+                //循环遍历，push()方法可向数组的末尾添加一个或多个元素，并返回新的长度
+                checkedList.push($(this).val()); //复选框的值是已经取到的数据id--$(this).val()
+            });
+            $.ajax(
+                {
+                    url:"deleteListNotice",
+                    type:"POST",
+                    data:{"ids":checkedList.toString()},
+                    dataType:"json",
+                    success : function (data) {
+
+                    }
+                }
+            );
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+            window.parent.location.reload();
+        });
+    }
+</script>
+<script>var _hmt = _hmt || []; (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();</script>
+</html>

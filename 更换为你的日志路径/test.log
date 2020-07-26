@@ -1,0 +1,19 @@
+11:50:59.239 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 11868 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+11:50:59.253 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+11:51:03.687 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+11:51:05.861 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 7.387 seconds (JVM running for 13.991)
+11:59:50.974 [Thread-27] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+11:59:55.758 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 11868 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+11:59:55.761 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:00:00.665 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+12:00:03.364 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 7.979 seconds (JVM running for 551.494)
+12:00:07.662 [Thread-34] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+12:00:31.264 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 11868 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:00:31.268 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:00:34.317 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-3} inited
+12:00:37.520 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 6.745 seconds (JVM running for 585.65)
+12:00:45.838 [Thread-39] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-3} closed
+12:00:49.735 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 11868 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:00:49.737 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:00:52.278 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-4} inited
+12:00:54.523 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 5.11 seconds (JVM running for 602.653)

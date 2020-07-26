@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles-merged.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="/static/js/vendor/html5shiv.min.js"></script>
+      <script src="/static/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+      <nav class="navbar navbar-default probootstrap-navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home" title="uiCookies:Enlight">Enlight</a>
+          </div>
+
+          <div id="navbar-collapse" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="home">首页</a></li>
+              <li><a href="news">爱心资讯</a></li>
+              <li><a href="causes">我们在路上</a></li>
+              <li><a href="specialnews">特别新闻</a></li>
+              <li class="active"><a href="about">关于我们</a></li>
+              <li><a href="testimonial">公益柜</a></li>
+              <li><a href="gallery">现场实况</a></li>
+              <li><a href="index">个人中心</a></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
+                <ul class="dropdown-menu">
+                  <li><a href="cause-single">优秀成员</a></li>
+                  <li><a href="comment">平台评价留言</a></li>
+                  <li><a href="donate">平台捐款</a></li>
+                </ul>
+              </li>
+              <li th:if="${session.username==null}" class="probootstra-cta-button last"><a href="login" class="btn btn-primary">登录</a></li>
+              <li th:if="${session.username!=null}" class="probootstra-cta-button last"><a href="#" class="btn btn-primary"><th:block th:text="${session.username}"></th:block></a></li>
+              <li th:if="${session.username!=null}"><a href="logout">退出</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(static/img/hero15.jpg)"  data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
+                <h1 class="probootstrap-heading probootstrap-animate">关于我们<span>你可以了解我们更多</span></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="probootstrap-section">
+        <div class="container">
+          <div class="row mb40">
+            <div class="col-md-6 col-md-push-6 probootstrap-animate">
+              <p><img src="/static/img/img_sq_1.jpg" alt="Free Bootstrap Template " class="img-responsive"></p>
+            </div>
+            <div class="col-md-5 col-md-pull-6 probootstrap-animate">
+              <h2>我们的格言</h2>
+              <p>成人善事，其功更倍;动人善愿，其量无涯</p>
+
+              　　<p>慈善是高尚人格的真实标记。 ——莎士比亚</p>
+
+                　　<p>凡人为善，不自誉而人誉之，为恶，不自毁而人毁之。——苏轼</p>
+
+                　　<p>一般而言，我对那些默默无闻，但做一些对人类有实际贡献的事情的人，都心存景仰，我很喜欢看关于那些人物的书。无论在医疗、政治、教育、福利哪一方面，对全人类有所帮助的人，我都很佩服。
+
+                　　——李嘉诚</p>
+
+                　　<p>善是由外来，名不以虚作。 ——屈原</p>
+            </div>
+            
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 probootstrap-animate">
+              <p><img src="/static/img/img_sq_2.jpg" alt="Free Bootstrap Template " class="img-responsive"></p>
+            </div>
+            <div class="col-md-5 col-md-push-1 probootstrap-animate">
+              <h2>我们的目标</h2>
+            <p>随着信息时代的快速发展，信息的传递速度更快了，传统的公益都是通过线下的自助站点或者在大街上的宣讲会上才可以得以进行，虽然这样的线下活动可以更真实宣传和做公益，但是这样子做公益，宣传公益的速度实在是太慢了。不仅如此，传统线下的公益资助站点或者宣讲会需要我们去到特定的站点或者街道才可以参加公益，最重要的是我们不知道附近有哪些公益站点，会耗费我们大部分的时间去寻找，所以收获的效果也是细微。网络的发展也带动了信息的传播速度，在信息技术高速发展的今天，我这个基于Web的公益自助平台可以实现在家不出门就可以做公益和树立公益精神的机会。在我这个系统中，在某个地区上，用户可以查询我们平台的公益柜摆放位置，然后根据导航去到离自己最近的位置进行物品的捐赠；在系统上，用户可以足不出户，通过网上交易转账的方式来进行捐赠，这个系统会”透明“的显示到目前为止，平台所收到的赠款，用户也可以在自己的用户系统上看到自己署名捐赠的物品的流向，自己捐赠的金钱归属于那一部分资助项目，也可以特定指出的捐赠给某个平台认定的公益项目或者基金会，解决了公益平台的金钱透明度问题；我这个公益系统也解决了公益活动的单一性，平台上有多种项目新闻分区，某些贫困或者需要帮助的人都可以注册平台的账号，我们实现了线上用户和管理员的聊天系统，用户可以汇报自己这个情况，平台根据实际情况核实后，把事情统一编写后开展这个项目的后续帮助工作。这些都是线下活动平台难以实现或者让群众难以信服的问题，如果实现了这个系统平台，我们的公益推广肯定会更加出色，让更多的人可以参加到公益事业中来，推动建设爱心社会。</p>
+            </div>
+            
+          </div>
+
+        </div>
+      </section>
+
+      <section class="probootstrap-section probootstrap-border-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+              <h2>负责人</h2></div>
+          </div>
+          <div class="row">
+            <div th:each="user:${ulist.list}" class="col-md-3 col-sm-6 col-xs-6 probootstrap-animate">
+              <a  class="probootstrap-team">
+                <img style="height: 168px;weight:168px" th:src="${user.uimage}" alt="Free Bootstrap Template " class="img-responsive">
+                <div class="probootstrap-team-info">
+                  <h3><th:block th:text="${user.uname}"></th:block><span class="position">搭档/CEO</span></h3>
+                </div>
+              </a>
+            </div>
+
+            <div class="clearfix visible-sm-block visible-xs-block"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>关于我们</h3>
+                <p>通过我们这个公益自助平台，我们希望可以让更多的人可以参加到公益社会，爱心社会的建设中来，以实现爱心献社会温暖暖人间的目标。</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>联系我们</h3>
+                <ul class="probootstrap-contact-info">
+                  <li><i class="icon-location2"></i> <span>广东省东莞市东莞理工学院</span></li>
+                  <li><i class="icon-mail"></i><span>c1063493030</span></li>
+                  <li><i class="icon-phone2"></i><span>+13433623007</span></li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="col-md-4 probootstrap-animate">
+              <div class="probootstrap-footer-widget">
+                <h3>公益</h3>
+                <p>爱心是冬日里的一片阳光，使饥寒交迫的人分外感到人间的温暖。爱心是沙漠中的一泓泉水，使濒临绝境的人重新看到生活的希望。爱心是夜空中的一轮明月，使孤苦无依的人即刻获得心灵的慰藉。爱心是春天里的一场细雨，使心灵枯萎的人特别感到情感的滋润。爱心是夏日里的一阵清风，使心急如焚的人感到无比的凉爽。爱心是黑夜里的一座灯塔，使迷失方向的航船找到停靠的港湾</p>
+                <p><a href="donate" class="btn btn-primary">捐赠</a></p>
+              </div>
+            </div>
+
+          </div>
+          <!-- END row -->
+
+        </div>
+
+      </footer>
+
+      <script src="/static/js/scripts.min.js"></script>
+      <script src="/static/js/main.min.js"></script>
+      <script src="/static/js/custom.js"></script>
+
+
+  </body>
+</html>

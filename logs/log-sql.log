@@ -1,0 +1,279 @@
+2020-05-10 07:57:49.552 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 1 AND nflag = 1 
+2020-05-10 07:57:49.616 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.664 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.671 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=1 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:57:49.673 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:57:49.687 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:57:49.692 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 07:57:49.692 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.694 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.697 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:57:49.697 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:57:49.708 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:57:49.719 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid 
+2020-05-10 07:57:49.720 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.726 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.727 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,donation.* from user,donation where user.uid = donation.duid order by donation.did desc LIMIT ? 
+2020-05-10 07:57:49.728 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:57:49.737 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:57:49.741 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM comment, user WHERE user.uid = comment.cuid AND comment.cnid = 0 
+2020-05-10 07:57:49.742 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.745 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.747 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select comment.*,user.* from comment,user where user.uid = comment.cuid and comment.cnid = 0 order by comment.cid desc LIMIT ? 
+2020-05-10 07:57:49.748 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:57:49.757 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:57:49.761 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice 
+2020-05-10 07:57:49.762 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.764 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.766 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select nimage from notice order by notice.nid LIMIT ? 
+2020-05-10 07:57:49.767 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 6(Integer)
+2020-05-10 07:57:49.770 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 6
+2020-05-10 07:57:49.771 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT * FROM notice where nselect=2 and nflag=1 ORDER BY nid DESC LIMIT 1 
+2020-05-10 07:57:49.772 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.776 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.777 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select sum(dmoney) from Donation 
+2020-05-10 07:57:49.778 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.782 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.783 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from User; 
+2020-05-10 07:57:49.784 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.787 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.790 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from Donation 
+2020-05-10 07:57:49.791 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.793 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:57:49.794 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from notice 
+2020-05-10 07:57:49.795 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:57:49.797 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:08.571 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from User where Username = ? and Upassword = ? 
+2020-05-10 07:58:08.574 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: Mhou(String), 123321(String)
+2020-05-10 07:58:08.582 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.129 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select Role.* from Role,UserRole where UserRole.userid = ? and Role.Rid = UserRole.Roleid; 
+2020-05-10 07:58:11.130 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer)
+2020-05-10 07:58:11.138 [http-nio-8080-exec-10] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.308 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select sum(dmoney) from Donation 
+2020-05-10 07:58:11.309 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.312 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.313 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from User; 
+2020-05-10 07:58:11.315 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.318 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.322 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from Donation 
+2020-05-10 07:58:11.323 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.325 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.329 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from notice 
+2020-05-10 07:58:11.330 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.333 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.646 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid 
+2020-05-10 07:58:11.647 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.650 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.652 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,donation.* from user,donation where user.uid = donation.duid order by donation.did desc LIMIT ? 
+2020-05-10 07:58:11.653 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:58:11.659 [http-nio-8080-exec-4] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:11.661 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from User where 1=1 
+2020-05-10 07:58:11.662 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.672 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 12
+2020-05-10 07:58:11.679 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from User where 1=1 
+2020-05-10 07:58:11.680 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:11.692 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 12
+2020-05-10 07:58:11.698 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM score, user WHERE suid = ? AND user.uid = score.suid 
+2020-05-10 07:58:11.699 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer)
+2020-05-10 07:58:11.703 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.705 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,score.* from score,user where suid = ? and user.uid = score.suid LIMIT ? 
+2020-05-10 07:58:11.706 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer), 5(Integer)
+2020-05-10 07:58:11.709 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM role, userrole, user WHERE role.rid = userrole.roleid AND user.uid = userrole.userid AND user.uid IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2020-05-10 07:58:11.712 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 33(Integer), 35(Integer), 36(Integer), 37(Integer), 38(Integer)
+2020-05-10 07:58:11.712 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.715 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM role, userrole, user WHERE role.rid = userrole.roleid AND user.uid = userrole.userid AND user.uid IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2020-05-10 07:58:11.717 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 33(Integer), 35(Integer), 36(Integer), 37(Integer), 38(Integer)
+2020-05-10 07:58:11.718 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.720 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:11.720 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select role.*,user.* from role,userrole,user where role.rid = userrole.roleid and user.uid = userrole.userid and user.uid in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) LIMIT ? 
+2020-05-10 07:58:11.722 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select role.*,user.* from role,userrole,user where role.rid = userrole.roleid and user.uid = userrole.userid and user.uid in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) LIMIT ? 
+2020-05-10 07:58:11.722 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 33(Integer), 35(Integer), 36(Integer), 37(Integer), 38(Integer), 5(Integer)
+2020-05-10 07:58:11.723 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 33(Integer), 35(Integer), 36(Integer), 37(Integer), 38(Integer), 5(Integer)
+2020-05-10 07:58:11.729 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:11.729 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:20.955 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 1 AND nflag = 1 
+2020-05-10 07:58:20.957 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:20.964 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:20.969 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=1 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:58:20.970 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:58:20.989 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:20.993 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 07:58:20.994 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:20.998 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.001 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:58:21.004 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:58:21.015 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:21.018 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid 
+2020-05-10 07:58:21.021 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.026 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.032 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,donation.* from user,donation where user.uid = donation.duid order by donation.did desc LIMIT ? 
+2020-05-10 07:58:21.033 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:58:21.040 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:21.043 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM comment, user WHERE user.uid = comment.cuid AND comment.cnid = 0 
+2020-05-10 07:58:21.046 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.048 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.050 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select comment.*,user.* from comment,user where user.uid = comment.cuid and comment.cnid = 0 order by comment.cid desc LIMIT ? 
+2020-05-10 07:58:21.051 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:58:21.057 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:58:21.060 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice 
+2020-05-10 07:58:21.061 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.063 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.066 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select nimage from notice order by notice.nid LIMIT ? 
+2020-05-10 07:58:21.068 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 6(Integer)
+2020-05-10 07:58:21.070 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 6
+2020-05-10 07:58:21.073 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT * FROM notice where nselect=2 and nflag=1 ORDER BY nid DESC LIMIT 1 
+2020-05-10 07:58:21.074 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.078 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.082 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select sum(dmoney) from Donation 
+2020-05-10 07:58:21.082 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.084 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.086 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from User; 
+2020-05-10 07:58:21.087 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.090 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.092 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from Donation 
+2020-05-10 07:58:21.093 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.096 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:58:21.098 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from notice 
+2020-05-10 07:58:21.099 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:58:21.101 [http-nio-8080-exec-3] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.026 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 1 AND nflag = 1 
+2020-05-10 07:59:52.028 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.033 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.036 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=1 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:59:52.038 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:59:52.047 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:59:52.050 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 07:59:52.050 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.053 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.056 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 07:59:52.058 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:59:52.068 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:59:52.071 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid 
+2020-05-10 07:59:52.072 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.074 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.076 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,donation.* from user,donation where user.uid = donation.duid order by donation.did desc LIMIT ? 
+2020-05-10 07:59:52.077 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:59:52.088 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:59:52.090 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM comment, user WHERE user.uid = comment.cuid AND comment.cnid = 0 
+2020-05-10 07:59:52.091 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.092 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.094 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select comment.*,user.* from comment,user where user.uid = comment.cuid and comment.cnid = 0 order by comment.cid desc LIMIT ? 
+2020-05-10 07:59:52.096 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 07:59:52.101 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 07:59:52.102 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice 
+2020-05-10 07:59:52.103 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.104 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.105 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select nimage from notice order by notice.nid LIMIT ? 
+2020-05-10 07:59:52.106 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 6(Integer)
+2020-05-10 07:59:52.109 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 6
+2020-05-10 07:59:52.110 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT * FROM notice where nselect=2 and nflag=1 ORDER BY nid DESC LIMIT 1 
+2020-05-10 07:59:52.113 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.118 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.119 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select sum(dmoney) from Donation 
+2020-05-10 07:59:52.119 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.121 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.123 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from User; 
+2020-05-10 07:59:52.124 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.126 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.128 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from Donation 
+2020-05-10 07:59:52.129 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.134 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 07:59:52.135 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from notice 
+2020-05-10 07:59:52.136 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 07:59:52.137 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:28.092 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice 
+2020-05-10 08:00:28.093 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:28.097 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:28.099 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select nimage from notice order by notice.nid LIMIT ? 
+2020-05-10 08:00:28.099 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 16(Integer)
+2020-05-10 08:00:28.102 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 16
+2020-05-10 08:00:30.925 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM cabinet WHERE 1 = 1 
+2020-05-10 08:00:30.926 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:30.936 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:30.940 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from cabinet where 1 = 1 LIMIT ? 
+2020-05-10 08:00:30.941 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:00:30.947 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:00:32.413 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, userrole WHERE user.uid = userrole.userid AND userrole.roleid = 1 
+2020-05-10 08:00:32.414 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:32.417 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:32.419 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.* from user,userrole where user.uid=userrole.userid and userrole.roleid =1 LIMIT ? 
+2020-05-10 08:00:32.421 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 4(Integer)
+2020-05-10 08:00:32.423 [http-nio-8080-exec-7] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 4
+2020-05-10 08:00:33.779 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 08:00:33.781 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:33.784 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:33.787 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:00:33.788 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:00:33.793 [http-nio-8080-exec-1] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:00:37.247 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 08:00:37.247 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:37.249 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:37.253 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:00:37.253 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:00:37.258 [http-nio-8080-exec-9] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:00:40.587 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 08:00:40.589 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:40.593 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:40.598 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:00:40.599 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:00:40.604 [http-nio-8080-exec-8] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:00:42.874 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 08:00:42.875 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:00:42.877 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:42.879 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:00:42.880 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:00:42.883 [http-nio-8080-exec-2] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:00:47.927 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where nid = ? 
+2020-05-10 08:00:47.929 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 19(Integer)
+2020-05-10 08:00:47.932 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:47.939 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM comment, user WHERE user.uid = comment.cuid AND comment.cnid = ? 
+2020-05-10 08:00:47.940 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 19(Integer)
+2020-05-10 08:00:47.944 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:00:47.950 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid AND donation.dnid = ? 
+2020-05-10 08:00:47.951 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 19(Integer)
+2020-05-10 08:00:47.957 [http-nio-8080-exec-6] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.786 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 1 AND nflag = 1 
+2020-05-10 08:17:58.829 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.877 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.883 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=1 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:17:58.885 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:17:58.895 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:17:58.899 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice WHERE Nselect = 2 AND nflag = 1 
+2020-05-10 08:17:58.900 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.902 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.904 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select * from notice where Nselect=2 and nflag = 1 order by Nid desc LIMIT ? 
+2020-05-10 08:17:58.905 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:17:58.911 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:17:58.921 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM user, donation WHERE user.uid = donation.duid 
+2020-05-10 08:17:58.921 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.924 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.926 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select user.*,donation.* from user,donation where user.uid = donation.duid order by donation.did desc LIMIT ? 
+2020-05-10 08:17:58.927 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:17:58.932 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:17:58.936 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM comment, user WHERE user.uid = comment.cuid AND comment.cnid = 0 
+2020-05-10 08:17:58.937 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.938 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.940 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select comment.*,user.* from comment,user where user.uid = comment.cuid and comment.cnid = 0 order by comment.cid desc LIMIT ? 
+2020-05-10 08:17:58.940 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 5(Integer)
+2020-05-10 08:17:58.948 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 5
+2020-05-10 08:17:58.953 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT count(0) FROM notice 
+2020-05-10 08:17:58.953 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.955 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.957 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select nimage from notice order by notice.nid LIMIT ? 
+2020-05-10 08:17:58.958 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 6(Integer)
+2020-05-10 08:17:58.961 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 6
+2020-05-10 08:17:58.963 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: SELECT * FROM notice where nselect=2 and nflag=1 ORDER BY nid DESC LIMIT 1 
+2020-05-10 08:17:58.964 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.967 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.969 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select sum(dmoney) from Donation 
+2020-05-10 08:17:58.970 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.973 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.975 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from User; 
+2020-05-10 08:17:58.975 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.977 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.977 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from Donation 
+2020-05-10 08:17:58.978 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.980 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1
+2020-05-10 08:17:58.981 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==>  Preparing: select count(*) from notice 
+2020-05-10 08:17:58.981 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - ==> Parameters: 
+2020-05-10 08:17:58.982 [http-nio-8080-exec-5] DEBUG org.apache.ibatis.logging.jdbc.BaseJdbcLogger.debug(BaseJdbcLogger.java:143) - <==      Total: 1

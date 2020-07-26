@@ -1,0 +1,37 @@
+12:02:12.723 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 13572 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:02:12.749 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:02:24.408 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:02:29.419 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 18.502 seconds (JVM running for 36.673)
+12:06:44.773 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 4576 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:06:44.804 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:06:49.080 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:06:51.059 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 7.152 seconds (JVM running for 13.429)
+12:08:54.719 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 13908 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:08:54.730 [restartedMain] INFO  com.charity.CharityApplication - The following profiles are active: local
+12:08:58.750 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:09:00.693 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 6.73 seconds (JVM running for 12.69)
+12:09:48.313 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 13904 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:09:48.338 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:09:53.500 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:09:55.435 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 8.133 seconds (JVM running for 15.233)
+12:14:29.928 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 17184 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:14:29.943 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:14:33.871 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:14:35.823 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 6.585 seconds (JVM running for 12.296)
+12:15:15.314 [Thread-24] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+12:15:16.823 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 17184 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:15:16.825 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:15:18.019 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+12:15:18.071 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+12:15:23.407 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 17184 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:15:23.410 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:15:24.912 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-3} inited
+12:15:26.113 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 2.961 seconds (JVM running for 62.586)
+12:18:12.058 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 20116 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:18:12.087 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:18:17.220 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:18:19.184 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 8.735 seconds (JVM running for 15.644)
+12:19:54.083 [restartedMain] INFO  com.charity.CharityApplication - Starting CharityApplication on DESKTOP-72MLF68 with PID 16836 (D:\java\Charity\target\classes started by 菠菜男朋友 in D:\java\Charity)
+12:19:54.096 [restartedMain] INFO  com.charity.CharityApplication - No active profile set, falling back to default profiles: default
+12:19:59.550 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:20:01.391 [restartedMain] INFO  com.charity.CharityApplication - Started CharityApplication in 8.285 seconds (JVM running for 16.238)
