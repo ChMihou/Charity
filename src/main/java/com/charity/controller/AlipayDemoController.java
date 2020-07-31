@@ -1,4 +1,5 @@
 package com.charity.controller;
+
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +26,6 @@ import java.util.*;
 
 @Controller
 public class AlipayDemoController {
-
 
 
     @Autowired
@@ -56,7 +57,7 @@ public class AlipayDemoController {
 
     @RequestMapping(value = "goAlipay", produces = "text/html; charset=UTF-8")
     @ResponseBody
-    public String goAlipay(HttpServletRequest request, HttpServletRequest response,Integer id,String money) throws Exception {
+    public String goAlipay(HttpServletRequest request, HttpServletRequest response, Integer id, String money) throws Exception {
 
 
         //获得初始化的AlipayClient
@@ -72,27 +73,27 @@ public class AlipayDemoController {
         //付款金额，必填
         String total_amount = money;
 
-        if (id==null)
-            id=0;
-        redisUtils.set(out_trade_no,id);
+        if (id == null)
+            id = 0;
+        redisUtils.set(out_trade_no, id);
         //订单名称，必填
-        String subject = "捐赠"+money+"元";
+        String subject = "捐赠" + money + "元";
         //商品描述，可空
         String body = "捐款";
 
         // 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 该参数数值不接受小数点， 如 1.5h，可转换为 90m。
         String timeout_express = "1c";
 
-        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
-                + "\"total_amount\":\""+ total_amount +"\","
-                + "\"subject\":\""+ subject +"\","
-                + "\"body\":\""+ body +"\","
-                + "\"timeout_express\":\""+ timeout_express +"\","
+        alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
+                + "\"total_amount\":\"" + total_amount + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"body\":\"" + body + "\","
+                + "\"timeout_express\":\"" + timeout_express + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 
         //请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();
-        System.out.println("返回页面"+ result);
+        System.out.println("返回页面" + result);
         return result;
     }
 
@@ -101,23 +102,23 @@ public class AlipayDemoController {
         response.setContentType("text/html;charset=utf-8");
         HttpSession session = request.getSession();
         boolean verifyResult = rsaCheckV1(request);
-        if(verifyResult){
+        if (verifyResult) {
             //验证成功
             //请在这里加上商户的业务逻辑程序代码，如保存支付宝交易号
             //商户订单号
-            String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+            String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
             //支付宝交易号
-            String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-            String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
+            String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
+            String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
             String ids = (String) request.getSession().getAttribute("ids");
-            System.out.println("订单号"+out_trade_no);
-            System.out.println("交易号"+trade_no);
-            System.out.println("交易金额"+total_amount);
-            Integer nid =(Integer)redisUtils.get(out_trade_no);
+            System.out.println("订单号" + out_trade_no);
+            System.out.println("交易号" + trade_no);
+            System.out.println("交易金额" + total_amount);
+            Integer nid = (Integer) redisUtils.get(out_trade_no);
             redisUtils.remove(out_trade_no);
-            String donations = "捐赠"+total_amount+"元";
+            String donations = "捐赠" + total_amount + "元";
             Integer dmoney = Double.valueOf(total_amount).intValue();
-            Integer uid ;
+            Integer uid;
             Integer goal;
             Date date = new Date();
             Timestamp time = new Timestamp(date.getTime());
@@ -125,19 +126,18 @@ public class AlipayDemoController {
             Score score = new Score();
             Notice notice = new Notice();
             String name;
-            if(nid!=0) {
+            if (nid != 0) {
                 name = noticeService.SelectNoticeId(nid).getNtitle();
-            }else
-            {
-                name= "平台捐款";
+            } else {
+                name = "平台捐款";
             }
-            Boolean flag ;
-            if(session.getAttribute("Uid")==null){
-                uid=null;
-            }else{
-                uid = (Integer)session.getAttribute("Uid");
-                if (dmoney>100)
-                     goal= 100;
+            Boolean flag;
+            if (session.getAttribute("Uid") == null) {
+                uid = null;
+            } else {
+                uid = (Integer) session.getAttribute("Uid");
+                if (dmoney > 100)
+                    goal = 100;
                 else
                     goal = 50;
                 score.setScause(donations);
@@ -146,38 +146,45 @@ public class AlipayDemoController {
                 score.setSuid(uid);
                 flag = scoreService.updateOne(score);
             }
-            if (nid!=0) {
+            if (nid != 0) {
                 Integer oldmoney = noticeService.Selectdmoney(nid);
                 Integer newmoney = dmoney + oldmoney;
                 notice.setNid(nid);
                 notice.setNmoney(newmoney);
                 boolean flag1 = noticeService.donateNotice(notice);
             }
-            donation.setDuid(uid);donation.setDaddress(name);donation.setDnid(nid);donation.setDsid(score.getSid());
-            donation.setDonations(donations);donation.setDmoney(dmoney);donation.setDid(1);
+            donation.setDuid(uid);
+            donation.setDaddress(name);
+            donation.setDnid(nid);
+            donation.setDsid(score.getSid());
+            donation.setDonations(donations);
+            donation.setDmoney(dmoney);
+            donation.setDid(1);
             Boolean flag2 = donationService.AddDonation(donation);
 
-            if (nid==0) {
+            if (nid == 0) {
                 return "redirect:donate";
-            }else{
-                return "redirect:article?id="+nid;
+            } else {
+                return "redirect:article?id=" + nid;
             }
 
-        }else{
+        } else {
             return "redirect:error";
 
         }
     }
+
     @RequestMapping("toView")
-    public String view(String viewName){
+    public String view(String viewName) {
         return viewName;
     }
-    public boolean rsaCheckV1(HttpServletRequest request){
+
+    public boolean rsaCheckV1(HttpServletRequest request) {
         // https://docs.open.alipay.com/54/106370
         // 获取支付宝POST过来反馈信息
-        Map<String,String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>();
         Map requestParams = request.getParameterMap();
-        for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+        for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
             String name = (String) iter.next();
             String[] values = (String[]) requestParams.get(name);
             String valueStr = "";
@@ -200,8 +207,9 @@ public class AlipayDemoController {
             return true;
         }
     }
+
     @RequestMapping("view")
-    public String view(){
+    public String view() {
         return "home";
     }
 
@@ -210,7 +218,7 @@ public class AlipayDemoController {
         // 一定要验签，防止黑客篡改参数
         Map<String, String[]> parameterMap = request.getParameterMap();
         StringBuilder notifyBuild = new StringBuilder("/****************************** alipay notify ******************************/\n");
-        parameterMap.forEach((key, value) -> notifyBuild.append(key + "=" + value[0] + "\n") );
+        parameterMap.forEach((key, value) -> notifyBuild.append(key + "=" + value[0] + "\n"));
 //        log.info(notifyBuild.toString());
 
 
@@ -229,16 +237,16 @@ public class AlipayDemoController {
              */
 
             //交易状态
-            String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+            String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"), "UTF-8");
             // 商户订单号
-            String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+            String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
             //支付宝交易号
-            String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+            String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
             //付款金额
-            String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
+            String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
             // TRADE_FINISHED(表示交易已经成功结束，并不能再对该交易做后续操作);
             // TRADE_SUCCESS(表示交易已经成功结束，可以对该交易做后续操作，如：分润、退款等);
-            if(tradeStatus.equals("TRADE_FINISHED")){
+            if (tradeStatus.equals("TRADE_FINISHED")) {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，
                 // 并判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），并执行商户的业务程序
@@ -248,7 +256,7 @@ public class AlipayDemoController {
                 //注意：
                 //如果签约的是可退款协议，退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
                 //如果没有签约可退款协议，那么付款完成后，支付宝系统发送该交易状态通知。
-            } else if (tradeStatus.equals("TRADE_SUCCESS")){
+            } else if (tradeStatus.equals("TRADE_SUCCESS")) {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，
                 // 并判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），并执行商户的业务程序

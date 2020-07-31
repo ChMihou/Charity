@@ -16,8 +16,8 @@ public class CabinetServiceimpl implements CabinetService {
     private CabinetDao cabinetDao;
 
     @Override
-    public List<Cabinet> SelectAllCabinet(Cabinet cabinet,int pageNum,int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public List<Cabinet> SelectAllCabinet(Cabinet cabinet, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return cabinetDao.SelectAllCabinet(cabinet);
     }
 

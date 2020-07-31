@@ -17,8 +17,8 @@ public class AwadServiceimpl implements AwardService {
     AwardDao awardDao;
 
     @Override
-    public List<UserAwardVo> SelectPersonAward(Integer id,int pageNum,int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public List<UserAwardVo> SelectPersonAward(Integer id, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return awardDao.SelectPersonAward(id);
     }
 

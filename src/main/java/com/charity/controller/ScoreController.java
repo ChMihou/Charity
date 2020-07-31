@@ -58,36 +58,34 @@ public class ScoreController {
 
     @RequestMapping("score")
     @AuthToken
-    public ModelAndView score(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request)
-    {
+    public ModelAndView score(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         HttpSession session = request.getSession();
-        Integer id = (Integer)session.getAttribute("Uid");
-        List<UserScoreVo> userScoreVos = scoreService.selectPersonScore(id,pageNum,pageSize);
+        Integer id = (Integer) session.getAttribute("Uid");
+        List<UserScoreVo> userScoreVos = scoreService.selectPersonScore(id, pageNum, pageSize);
         PageInfo slist = new PageInfo(userScoreVos);
         List pagenums = new ArrayList();
-        if(pageNum>3&&slist.getPages()>5)  //当前端页数超过第三页时,并且查询到的总页数大于5
+        if (pageNum > 3 && slist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
         {
-            if(pageNum>=slist.getPages()-2){ //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                pagenums.add(slist.getPages()-4);
-                pagenums.add(slist.getPages()-3);
-                pagenums.add(slist.getPages()-2);
-                pagenums.add(slist.getPages()-1);
+            if (pageNum >= slist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
+                pagenums.add(slist.getPages() - 4);
+                pagenums.add(slist.getPages() - 3);
+                pagenums.add(slist.getPages() - 2);
+                pagenums.add(slist.getPages() - 1);
                 pagenums.add(slist.getPages());
-            }
-            else{
-                pagenums.add(pageNum-2);
-                pagenums.add(pageNum-1);
+            } else {
+                pagenums.add(pageNum - 2);
+                pagenums.add(pageNum - 1);
                 pagenums.add(pageNum);
-                pagenums.add(pageNum+1);
-                pagenums.add(pageNum+2);
+                pagenums.add(pageNum + 1);
+                pagenums.add(pageNum + 2);
             }
-        }else{          //前端页数没超过第三页时
-            if(slist.getPages()<5) //如果总页数小于5
+        } else {          //前端页数没超过第三页时
+            if (slist.getPages() < 5) //如果总页数小于5
             {
-                for(int i=0;i<slist.getPages();i++)
-                    pagenums.add(i+1);
-            }else{
+                for (int i = 0; i < slist.getPages(); i++)
+                    pagenums.add(i + 1);
+            } else {
                 pagenums.add("1");
                 pagenums.add("2");
                 pagenums.add("3");
@@ -95,27 +93,26 @@ public class ScoreController {
                 pagenums.add("5");
             }
         }
-        mv.addObject("pagenums",pagenums);
-        mv.addObject("slist",slist);
+        mv.addObject("pagenums", pagenums);
+        mv.addObject("slist", slist);
         mv.setViewName("score");
         return mv;
     }
 
     @RequestMapping("award")
     @AuthToken
-    public ModelAndView award(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,HttpServletRequest request)
-    {
+    public ModelAndView award(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         HttpSession session = request.getSession();
-        Integer permisssionlevel = (Integer)session.getAttribute("permisssionlevel");
-        Integer id =  (Integer)session.getAttribute("Uid");
+        Integer permisssionlevel = (Integer) session.getAttribute("permisssionlevel");
+        Integer id = (Integer) session.getAttribute("Uid");
         String key = request.getParameter("key");
-        if(key==""||key=="null"){
-            key=null;
+        if (key == "" || key == "null") {
+            key = null;
         }
-        List<UserAwardVo> userAwardVos =new ArrayList<>();
-        mv.addObject("key",key);
-        if(userService.SelectUsername(key)==null&&permisssionlevel!=4) {
+        List<UserAwardVo> userAwardVos = new ArrayList<>();
+        mv.addObject("key", key);
+        if (userService.SelectUsername(key) == null && permisssionlevel != 4) {
             Integer uid = null;
             userAwardVos = awardService.SelectPersonAward(uid, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
@@ -150,34 +147,32 @@ public class ScoreController {
             }
             mv.addObject("pagenums", pagenums);
             mv.addObject("alist", alist);
-        }
-        else if (userService.SelectUsername(key)!=null&&permisssionlevel!=4){
+        } else if (userService.SelectUsername(key) != null && permisssionlevel != 4) {
             Integer uid = userService.SelectUsername(key).getUid();
-            userAwardVos  = awardService.SelectPersonAward(uid,pageNum,pageSize);
+            userAwardVos = awardService.SelectPersonAward(uid, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
             List pagenums = new ArrayList();
-            if(pageNum>3&&alist.getPages()>5)  //当前端页数超过第三页时,并且查询到的总页数大于5
+            if (pageNum > 3 && alist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
             {
-                if(pageNum>=alist.getPages()-2){ //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(alist.getPages()-4);
-                    pagenums.add(alist.getPages()-3);
-                    pagenums.add(alist.getPages()-2);
-                    pagenums.add(alist.getPages()-1);
+                if (pageNum >= alist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
+                    pagenums.add(alist.getPages() - 4);
+                    pagenums.add(alist.getPages() - 3);
+                    pagenums.add(alist.getPages() - 2);
+                    pagenums.add(alist.getPages() - 1);
                     pagenums.add(alist.getPages());
-                }
-                else{
-                    pagenums.add(pageNum-2);
-                    pagenums.add(pageNum-1);
+                } else {
+                    pagenums.add(pageNum - 2);
+                    pagenums.add(pageNum - 1);
                     pagenums.add(pageNum);
-                    pagenums.add(pageNum+1);
-                    pagenums.add(pageNum+2);
+                    pagenums.add(pageNum + 1);
+                    pagenums.add(pageNum + 2);
                 }
-            }else{          //前端页数没超过第三页时
-                if(alist.getPages()<5) //如果总页数小于5
+            } else {          //前端页数没超过第三页时
+                if (alist.getPages() < 5) //如果总页数小于5
                 {
-                    for(int i=0;i<alist.getPages();i++)
-                        pagenums.add(i+1);
-                }else{
+                    for (int i = 0; i < alist.getPages(); i++)
+                        pagenums.add(i + 1);
+                } else {
                     pagenums.add("1");
                     pagenums.add("2");
                     pagenums.add("3");
@@ -185,34 +180,33 @@ public class ScoreController {
                     pagenums.add("5");
                 }
             }
-            mv.addObject("pagenums",pagenums);
-            mv.addObject("alist",alist);
-        }else{
-            userAwardVos  = awardService.SelectPersonAward(id,pageNum,pageSize);
+            mv.addObject("pagenums", pagenums);
+            mv.addObject("alist", alist);
+        } else {
+            userAwardVos = awardService.SelectPersonAward(id, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
             List pagenums = new ArrayList();
-            if(pageNum>3&&alist.getPages()>5)  //当前端页数超过第三页时,并且查询到的总页数大于5
+            if (pageNum > 3 && alist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
             {
-                if(pageNum>=alist.getPages()-2){ //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(alist.getPages()-4);
-                    pagenums.add(alist.getPages()-3);
-                    pagenums.add(alist.getPages()-2);
-                    pagenums.add(alist.getPages()-1);
+                if (pageNum >= alist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
+                    pagenums.add(alist.getPages() - 4);
+                    pagenums.add(alist.getPages() - 3);
+                    pagenums.add(alist.getPages() - 2);
+                    pagenums.add(alist.getPages() - 1);
                     pagenums.add(alist.getPages());
-                }
-                else{
-                    pagenums.add(pageNum-2);
-                    pagenums.add(pageNum-1);
+                } else {
+                    pagenums.add(pageNum - 2);
+                    pagenums.add(pageNum - 1);
                     pagenums.add(pageNum);
-                    pagenums.add(pageNum+1);
-                    pagenums.add(pageNum+2);
+                    pagenums.add(pageNum + 1);
+                    pagenums.add(pageNum + 2);
                 }
-            }else{          //前端页数没超过第三页时
-                if(alist.getPages()<5) //如果总页数小于5
+            } else {          //前端页数没超过第三页时
+                if (alist.getPages() < 5) //如果总页数小于5
                 {
-                    for(int i=0;i<alist.getPages();i++)
-                        pagenums.add(i+1);
-                }else{
+                    for (int i = 0; i < alist.getPages(); i++)
+                        pagenums.add(i + 1);
+                } else {
                     pagenums.add("1");
                     pagenums.add("2");
                     pagenums.add("3");
@@ -220,8 +214,8 @@ public class ScoreController {
                     pagenums.add("5");
                 }
             }
-            mv.addObject("pagenums",pagenums);
-            mv.addObject("alist",alist);
+            mv.addObject("pagenums", pagenums);
+            mv.addObject("alist", alist);
         }
         mv.setViewName("award");
         return mv;
@@ -229,17 +223,16 @@ public class ScoreController {
 
     @RequestMapping("add-award")
     @AuthToken
-    public ModelAndView addaward(HttpServletRequest request)
-    {
+    public ModelAndView addaward(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("add-award");
         return mv;
     }
+
     @RequestMapping("deleteAward")
     @AuthToken
     @ResponseBody
-    public Boolean deleteaward(Integer id,HttpServletRequest request)
-    {
+    public Boolean deleteaward(Integer id, HttpServletRequest request) {
         Integer aid = Integer.valueOf(id);
 
         boolean flag = awardService.deleteAward(aid);
@@ -249,10 +242,11 @@ public class ScoreController {
             return false;     // 删除失败
         }
     }
+
     @RequestMapping("addaward")
     @AuthToken
     @ResponseBody
-    public Integer addaward1(String ausername,String aname,HttpServletRequest request) {
+    public Integer addaward1(String ausername, String aname, HttpServletRequest request) {
         if (userService.SelectUsername(ausername) == null)
             return 3;
         Integer id = userService.SelectUsername(ausername).getUid();
@@ -268,13 +262,13 @@ public class ScoreController {
         else
             return 2;
     }
+
     @RequestMapping("award-comment")
     @AuthToken
-    public ModelAndView acomment(HttpServletRequest request)
-    {
+    public ModelAndView acomment(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer id = Integer.valueOf(request.getParameter("id"));
-        mv.addObject("id",id);
+        mv.addObject("id", id);
         mv.setViewName("award-comment");
         return mv;
     }
@@ -282,7 +276,7 @@ public class ScoreController {
     @RequestMapping("awardcomment")
     @ResponseBody
     @AuthToken
-    public Boolean awardcomment(String acomment,Integer id,HttpSession session) {
+    public Boolean awardcomment(String acomment, Integer id, HttpSession session) {
         Award award = new Award();
         award.setAcomment(acomment);
         award.setAid(id);
@@ -290,7 +284,7 @@ public class ScoreController {
         System.out.println(a);
         if (a) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

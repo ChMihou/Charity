@@ -48,7 +48,7 @@ public class WebsocketController {
 
 
     /**
-     *   进入聊天室 --> 项目中读取用户信息获取用户名
+     * 进入聊天室 --> 项目中读取用户信息获取用户名
      */
     @RequestMapping("websocket")
     @AuthToken
@@ -65,9 +65,9 @@ public class WebsocketController {
         String ip = inetAddress.toString();
         String localhost = StringUtils.substringAfterLast(ip, "/");
         //websock链接地址+游客名-->  项目中请定义在配置文件 -->或直接读取服务器，ip 端口
-        String path="ws://"+localhost+":8080/websocket/";
-        model.addAttribute("path",path);
-        model.addAttribute("username",name);
+        String path = "ws://" + localhost + ":8080/websocket/";
+        model.addAttribute("path", path);
+        model.addAttribute("username", name);
         return "chatroom";
     }
 
@@ -196,7 +196,7 @@ public class WebsocketController {
     }
 
     /**
-     *  消息发送指定人
+     * 消息发送指定人
      */
     public void sendMessageTo(String message, String ToUserName) throws IOException {
         //遍历所有用户
@@ -210,7 +210,7 @@ public class WebsocketController {
     }
 
     /**
-     *  消息发送所有人
+     * 消息发送所有人
      */
     public void sendMessageAll(String message, String FromUserName) throws IOException {
         for (WebsocketController item : clients.values()) {
@@ -240,7 +240,11 @@ public class WebsocketController {
 
 /**
  * 广播推送
- **/
+ * <p>
+ * 点对点推送
+ * <p>
+ * 异常信息推送
+ */
 //    @MessageMapping(value = "/chat") // 匹配客户端 send 消息时的URL
 //    @SendTo("/topic/getResponse")   //分别用于给客户端订阅广播消息
 //    public String talk(@Payload String text, @Header("simpSessionId") String sessionId) throws Exception {

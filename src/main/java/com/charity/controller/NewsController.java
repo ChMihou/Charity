@@ -53,25 +53,26 @@ public class NewsController {
 
     @Autowired
     EmailService emailService;
+
     @RequestMapping("admin-news")
     @AuthToken
-    public ModelAndView adminnews(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request){
+    public ModelAndView adminnews(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer flag;
         String check = request.getParameter("check");
         HttpSession session = request.getSession();
-        Integer permisssionlevel = (Integer)session.getAttribute("permisssionlevel");
-        mv.addObject("check",check);
-        if(request.getParameter("check")==""||request.getParameter("check")==null){
+        Integer permisssionlevel = (Integer) session.getAttribute("permisssionlevel");
+        mv.addObject("check", check);
+        if (request.getParameter("check") == "" || request.getParameter("check") == null) {
             flag = null;
-        }else {
+        } else {
             flag = Integer.valueOf(request.getParameter("check"));
         }
         String key = request.getParameter("key");
         Notice notice = new Notice();
         notice.setNflag(flag);
         notice.setNtitle(key);
-        if (permisssionlevel==4){
+        if (permisssionlevel == 4) {
             List<Notice> notices = noticeService.SelectreadNotice1(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -106,7 +107,7 @@ public class NewsController {
             }
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
-        }else {
+        } else {
             List<Notice> notices = noticeService.SelectNotice1(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -142,30 +143,31 @@ public class NewsController {
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
-        mv.addObject("check",check);
-        mv.addObject("key",key);
+        mv.addObject("check", check);
+        mv.addObject("key", key);
         mv.setViewName("admin-news");
         return mv;
     }
+
     @RequestMapping("admin-special")
     @AuthToken
-    public ModelAndView adminspecial(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,HttpServletRequest request){
+    public ModelAndView adminspecial(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer flag;
         String check = request.getParameter("check");
         HttpSession session = request.getSession();
         Integer permisssionlevel = (Integer) session.getAttribute("permisssionlevel");
-        mv.addObject("check",check);
-        if(request.getParameter("check")==""||request.getParameter("check")==null){
+        mv.addObject("check", check);
+        if (request.getParameter("check") == "" || request.getParameter("check") == null) {
             flag = null;
-        }else {
+        } else {
             flag = Integer.valueOf(request.getParameter("check"));
         }
         String key = request.getParameter("key");
         Notice notice = new Notice();
         notice.setNflag(flag);
         notice.setNtitle(key);
-        if (permisssionlevel==4){
+        if (permisssionlevel == 4) {
             List<Notice> notices = noticeService.SelectreadNotice3(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -200,7 +202,7 @@ public class NewsController {
             }
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
-        }else {
+        } else {
             List<Notice> notices = noticeService.SelectNotice3(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -236,30 +238,31 @@ public class NewsController {
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
-        mv.addObject("check",check);
-        mv.addObject("key",key);
+        mv.addObject("check", check);
+        mv.addObject("key", key);
         mv.setViewName("admin-special");
         return mv;
     }
+
     @RequestMapping("admin-project")
     @AuthToken
-    public ModelAndView adminproject(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,HttpServletRequest request){
+    public ModelAndView adminproject(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer flag;
         HttpSession session = request.getSession();
         Integer permisssionlevel = (Integer) session.getAttribute("permisssionlevel");
         String check = request.getParameter("check");
-        mv.addObject("check",check);
-        if(request.getParameter("check")==""||request.getParameter("check")==null){
+        mv.addObject("check", check);
+        if (request.getParameter("check") == "" || request.getParameter("check") == null) {
             flag = null;
-        }else {
+        } else {
             flag = Integer.valueOf(request.getParameter("check"));
         }
         String key = request.getParameter("key");
         Notice notice = new Notice();
         notice.setNflag(flag);
         notice.setNtitle(key);
-        if (permisssionlevel==4){
+        if (permisssionlevel == 4) {
             List<Notice> notices = noticeService.SelectreadNotice2(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -294,7 +297,7 @@ public class NewsController {
             }
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
-        }else {
+        } else {
             List<Notice> notices = noticeService.SelectNotice2(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
@@ -330,51 +333,51 @@ public class NewsController {
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
-        mv.addObject("key",key);
-        mv.addObject("check",check);
+        mv.addObject("key", key);
+        mv.addObject("check", check);
         mv.setViewName("admin-project");
         return mv;
     }
 
     @RequestMapping("read-article")
     @AuthToken
-    public ModelAndView readarticle(HttpServletRequest request){
+    public ModelAndView readarticle(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer nid = Integer.valueOf(request.getParameter("id"));
         Notice notice = noticeService.SelectNoticeId(nid);
-        mv.addObject("notice",notice);
+        mv.addObject("notice", notice);
         mv.setViewName("read-article");
         return mv;
     }
 
     @RequestMapping("edit-article")
     @AuthToken
-    public ModelAndView editarticle(HttpServletRequest request){
+    public ModelAndView editarticle(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer nid;
-        if(request.getParameter("id")==null) {
+        if (request.getParameter("id") == null) {
             nid = 1;
-        }else {
+        } else {
             nid = Integer.valueOf(request.getParameter("id"));
         }
         Notice notice = noticeService.SelectNoticeId(nid);
-        mv.addObject("notice",notice);
+        mv.addObject("notice", notice);
         mv.setViewName("edit-article");
         return mv;
     }
 
     @RequestMapping("check-article")
     @AuthToken
-    public ModelAndView checkarticle(HttpServletRequest request){
+    public ModelAndView checkarticle(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer nid;
-        if(request.getParameter("id")==null) {
+        if (request.getParameter("id") == null) {
             nid = 1;
-        }else {
+        } else {
             nid = Integer.valueOf(request.getParameter("id"));
         }
         Notice notice = noticeService.SelectNoticeId(nid);
-        mv.addObject("notice",notice);
+        mv.addObject("notice", notice);
         mv.setViewName("check-article");
         return mv;
     }
@@ -394,8 +397,7 @@ public class NewsController {
     @RequestMapping("addarticle")
     @ResponseBody
     @AuthToken
-    public Boolean addarticle(String n_title,String n_article,String n_author,Integer n_flag,Integer n_select,String images,Integer aims,String nintro)
-    {
+    public Boolean addarticle(String n_title, String n_article, String n_author, Integer n_flag, Integer n_select, String images, Integer aims, String nintro) {
         System.out.println(n_title);
         System.out.println(n_flag);
         Notice notice = new Notice();
@@ -412,15 +414,15 @@ public class NewsController {
         notice.setMoney(aims);
         notice.setNmoney(0);
         noticeService.addNotice(notice);
-        return  true;
+        return true;
     }
 
     @RequestMapping("article-add")
     @AuthToken
-    public ModelAndView articleadd(HttpServletRequest request){
+    public ModelAndView articleadd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer nselect = Integer.valueOf(request.getParameter("nselect"));
-        mv.addObject("nselect",nselect);
+        mv.addObject("nselect", nselect);
         mv.setViewName("add-article");
         return mv;
     }
@@ -437,6 +439,7 @@ public class NewsController {
         }
         return false;
     }
+
     @RequestMapping("deleteListNotice")
     @ResponseBody
     @AuthToken
@@ -461,9 +464,8 @@ public class NewsController {
 
     @RequestMapping("updateNotice")
     @ResponseBody
-    public boolean updatearticle(Integer n_id, String n_title, String n_article, String n_author, Integer n_flag,String images,Integer aims,String ninro)
-    {
-        ModelAndView mv= new ModelAndView();
+    public boolean updatearticle(Integer n_id, String n_title, String n_article, String n_author, Integer n_flag, String images, Integer aims, String ninro) {
+        ModelAndView mv = new ModelAndView();
         Notice notice = new Notice();
         Date date = new Date();
         Timestamp nousedate = new Timestamp(date.getTime());
@@ -477,13 +479,13 @@ public class NewsController {
         notice.setNimage(images);
         notice.setMoney(aims);
         Boolean i;
-        if (images==null||images=="") {
+        if (images == null || images == "") {
             i = noticeService.updateNotice1(notice);
         } else {
             i = noticeService.updateNotice2(notice);
         }
-        mv.addObject("id",notice.getNid());
-        if(i)
+        mv.addObject("id", notice.getNid());
+        if (i)
             return true;
         return true;
     }
