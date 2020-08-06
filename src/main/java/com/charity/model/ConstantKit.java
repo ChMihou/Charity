@@ -1,6 +1,9 @@
 package com.charity.model;
 
 
+/**
+ * Redis全局变量
+ */
 public final class ConstantKit {
 
     /**

@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
 
+/**
+ * 生成简单token
+ */
 @Component
 public class Md5TokenGenerator implements TokenGenerator {
 

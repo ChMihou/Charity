@@ -1,5 +1,8 @@
 package com.charity.utils;
 
+/**
+ * 随机工具类
+ */
 public class RandomUtil {
     //随机得到6位数
     public static int getRandNum() {

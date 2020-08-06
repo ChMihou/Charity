@@ -1,9 +1,13 @@
 package com.charity.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class AlipayConfig {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     // 应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号
     public static String app_id = "2016101800711788";
 

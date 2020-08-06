@@ -43,14 +43,14 @@ public class LoginController {
     RoleService roleService;
 
     @RequestMapping("login")
-    public ModelAndView login(){
+    public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("login");
         return mv;
     }
 
     @RequestMapping("middle")
-    public ModelAndView middle(){
+    public ModelAndView middle() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("middle");
         return mv;
@@ -58,7 +58,7 @@ public class LoginController {
 
     @RequestMapping("loginchecks")
     @ResponseBody
-    public String logincheck(String Username, String Upassword, String checks, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
+    public String logincheck(String Username, String Upassword, String checks, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView mv = new ModelAndView();
 
@@ -71,32 +71,31 @@ public class LoginController {
         System.out.println(user.getUsername());
 
         // 从session中获取随机数
-        String random = (String)session.getAttribute("RANDOMVALIDATECODEKEY");
+        String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
 
         User user1 = userService.SelectUPw(user);
-        if (user1!=null&&!random.equalsIgnoreCase(checks))
-        {
+        if (user1 != null && !random.equalsIgnoreCase(checks)) {
             return "2"; //验证码错误
-        }else if (user1 != null&&random.equalsIgnoreCase(checks)) {
+        } else if (user1 != null && random.equalsIgnoreCase(checks)) {
             String uname = user1.getUname();
-            String AuthUsername = user1.getUsername()+"Auth";
+            String AuthUsername = user1.getUsername() + "Auth";
             Integer uid = user1.getUid();
-            if(redisUtils.get(uname)==null) {
-                redisUtils.set(AuthUsername,"Auth");
-                redisUtils.expire(AuthUsername,ConstantKit.Auth_EXPIRE_TIME);
-            }else{
+            if (redisUtils.get(uname) == null) {
+                redisUtils.set(AuthUsername, "Auth");
+                redisUtils.expire(AuthUsername, ConstantKit.Auth_EXPIRE_TIME);
+            } else {
                 redisUtils.remove(user1.getUsername());
                 redisUtils.remove(uname);
-                redisUtils.set(AuthUsername,null);
+                redisUtils.set(AuthUsername, null);
                 return "4";
             }
-            redisUtils.set(uname,uid);
+            redisUtils.set(uname, uid);
 
             Role role = userService.checkRole(uid);
 
-            session.setAttribute("permisssionlevel",role.getPermissionlevel());
+            session.setAttribute("permisssionlevel", role.getPermissionlevel());
 
-            session.setAttribute("Uid",uid);
+            session.setAttribute("Uid", uid);
 
             String token = tokenGenerator.generate(user1.getUsername(), user1.getUpassword());
 
@@ -115,9 +114,9 @@ public class LoginController {
 
             String name = (String) redisUtils.get(token);
 
-            session.setAttribute("username",user1.getUsername());
+            session.setAttribute("username", user1.getUsername());
 
-            session.setAttribute("httpHeaderName",token);
+            session.setAttribute("httpHeaderName", token);
 
             return "1";  //登陆成功
         } else {
@@ -130,25 +129,36 @@ public class LoginController {
     @ResponseBody
     public String adduser(String username, String pass, String Usex,
                           String email, String mobile, String address,
-                          String province, String nicename,String city,String area) throws IOException {
-        if (userService.SelectUsername(username)!=null) {
+                          String province, String nicename, String city, String area) throws IOException {
+        if (userService.SelectUsername(username) != null) {
             return "2";     // 用户名已被注册
         } else {
-            String flag = province+city+area+address;
+            String flag = province + city + area + address;
             address = flag;
             Date date = new Date();
             Timestamp datetime = new Timestamp(date.getTime()); //2013-01-14 22:45:36.484
             User user = new User();
             switch (Usex) {
-                case "1": Usex = "男"; break;
-                case "2": Usex = "女"; break;
+                case "1":
+                    Usex = "男";
+                    break;
+                case "2":
+                    Usex = "女";
+                    break;
             }
             user.setUimage("/static/images/noimage.jpg");
-            user.setUsername(username);user.setUpassword(pass);user.setUsex(Usex);user.setUDatetime(datetime);
-            user.setUaddress(address);user.setUemail(email);user.setUiphone(mobile);user.setUname(nicename);
+            user.setUsername(username);
+            user.setUpassword(pass);
+            user.setUsex(Usex);
+            user.setUDatetime(datetime);
+            user.setUaddress(address);
+            user.setUemail(email);
+            user.setUiphone(mobile);
+            user.setUname(nicename);
             Boolean flag1 = userService.addUser(user);
             UserRole userRole = new UserRole();
-            userRole.setRoleid(5);userRole.setUserid(user.getUid());
+            userRole.setRoleid(5);
+            userRole.setUserid(user.getUid());
             Boolean flag2 = roleService.adduserrole(userRole);
             System.out.println(flag2);
             System.out.println(flag1);
@@ -166,16 +176,17 @@ public class LoginController {
         System.out.println(username);
         System.out.println(mobile);
         User user = new User();
-        user.setUsername(username);user.setUiphone(mobile);
+        user.setUsername(username);
+        user.setUiphone(mobile);
         Boolean flag = userService.SelectUPhone(user);
         if (flag) {
-            HashMap<String,String> hashMap = SendSms.getMessageStatus(mobile);
+            HashMap<String, String> hashMap = SendSms.getMessageStatus(mobile);
             String result = hashMap.get("result");
             if (result.trim().equals("1")) {
                 String code = hashMap.get("code");
                 HttpSession session = request.getSession();
-                session.setAttribute(mobile+"code",code);
-                session.setMaxInactiveInterval(60*5);
+                session.setAttribute(mobile + "code", code);
+                session.setMaxInactiveInterval(60 * 5);
                 return "1";     // 验证码发送成功
             } else {
                 return "2";     // 验证码发送失败
@@ -189,13 +200,13 @@ public class LoginController {
     @ResponseBody
     public String comparecode(String username, String mobile, String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        String sessionCode = (String) session.getAttribute(mobile+"code");
+        String sessionCode = (String) session.getAttribute(mobile + "code");
         if (sessionCode != null && code.equals(sessionCode)) {
             // 把comparecode放进session，用于判断请求修改密码页面时是否通过了手机验证
             session.setAttribute("comparecode", "1");
             session.setAttribute("username", username);   // 把修改密码的用户名放进session
             return "1";     // 验证码正确
-        } else if(sessionCode != null && !code.equals(sessionCode)) {
+        } else if (sessionCode != null && !code.equals(sessionCode)) {
             return "2";     // 验证码错误
         } else {
             return "3";     // 没有按发送验真码按钮
@@ -209,12 +220,13 @@ public class LoginController {
             HttpSession session = request.getSession();
             String username = (String) session.getAttribute("username");
             User user = new User();
-            user.setUsername(username);user.setUpassword(newpassword);
-            Boolean flag =  userService.updateUserPassword(user);
-            if (flag){
+            user.setUsername(username);
+            user.setUpassword(newpassword);
+            Boolean flag = userService.updateUserPassword(user);
+            if (flag) {
                 session.invalidate();
                 return "1";     // 密码修改成功
-            }else{
+            } else {
                 System.out.println("未知错误");
                 return "3";
             }
@@ -248,18 +260,18 @@ public class LoginController {
     }
 
     @RequestMapping("logout")
-    public ModelAndView   Logout(HttpServletRequest request) {
+    public ModelAndView Logout(HttpServletRequest request) {
 
         ModelAndView mv = new ModelAndView();
         // 清除Session
-        HttpSession session  = request.getSession();
+        HttpSession session = request.getSession();
         String token = (String) session.getAttribute("httpHeaderName");
         String username = (String) redisUtils.get(token);
-        redisUtils.remove(username+"Auth");
+        redisUtils.remove(username + "Auth");
         redisUtils.remove(userService.SelectUsername(username).getUname());
         redisUtils.remove(token);
         redisUtils.remove(username);
-        redisUtils.remove(username+token);
+        redisUtils.remove(username + token);
         session.invalidate();
         mv.setViewName("login");
         return mv;
@@ -267,7 +279,7 @@ public class LoginController {
 
     //强制逼迫下线跳转页面
     @RequestMapping("compel")
-    public ModelAndView  compel() {
+    public ModelAndView compel() {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("compel");
@@ -275,7 +287,7 @@ public class LoginController {
     }
 
     @RequestMapping("compel1")
-    public ModelAndView  compel1() {
+    public ModelAndView compel1() {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("compel1");

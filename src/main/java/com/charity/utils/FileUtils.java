@@ -5,6 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 文件工具类
+ */
 public class FileUtils {
 
     /**

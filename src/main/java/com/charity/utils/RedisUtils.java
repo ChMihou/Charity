@@ -10,6 +10,9 @@ import java.util.Set;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * redis工具类
+ */
 @Component
 public class RedisUtils {
 

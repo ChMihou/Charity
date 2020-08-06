@@ -1,5 +1,6 @@
 package com.charity.controller;
 
+import com.charity.common.Paginator;
 import com.charity.entity.Cabinet;
 import com.charity.model.AuthToken;
 import com.charity.service.*;
@@ -72,34 +73,7 @@ public class CabinetController {
         List<Cabinet> cabinets = cabinetService.SelectAllCabinet(cabinet, pageNum, pageSize);
         PageInfo clist = new PageInfo(cabinets);
         List pagenums = new ArrayList();
-        if (pageNum > 3 && clist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-        {
-            if (pageNum >= clist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                pagenums.add(clist.getPages() - 4);
-                pagenums.add(clist.getPages() - 3);
-                pagenums.add(clist.getPages() - 2);
-                pagenums.add(clist.getPages() - 1);
-                pagenums.add(clist.getPages());
-            } else {
-                pagenums.add(pageNum - 2);
-                pagenums.add(pageNum - 1);
-                pagenums.add(pageNum);
-                pagenums.add(pageNum + 1);
-                pagenums.add(pageNum + 2);
-            }
-        } else {          //前端页数没超过第三页时
-            if (clist.getPages() < 5) //如果总页数小于5
-            {
-                for (int i = 0; i < clist.getPages(); i++)
-                    pagenums.add(i + 1);
-            } else {
-                pagenums.add("1");
-                pagenums.add("2");
-                pagenums.add("3");
-                pagenums.add("4");
-                pagenums.add("5");
-            }
-        }
+        Paginator.page(pagenums,clist,pageNum,pageSize);
         mv.addObject("pagenums", pagenums);
         mv.addObject("clist", clist);
         mv.setViewName("cabinet");

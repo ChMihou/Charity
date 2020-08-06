@@ -1,11 +1,13 @@
 package com.charity.config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsMapping implements WebMvcConfigurer {
-
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     /**
      * 重新跨域支持方法

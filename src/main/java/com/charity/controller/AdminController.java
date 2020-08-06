@@ -1,5 +1,6 @@
 package com.charity.controller;
 
+import com.charity.common.Paginator;
 import com.charity.entity.*;
 import com.charity.model.AuthToken;
 import com.charity.service.*;
@@ -84,34 +85,7 @@ public class AdminController {
             PageInfo userolevolist = new PageInfo(userRoleVos);
             mv.addObject("ulist", userolevolist);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && userolevolist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= userolevolist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(userolevolist.getPages() - 4);
-                    pagenums.add(userolevolist.getPages() - 3);
-                    pagenums.add(userolevolist.getPages() - 2);
-                    pagenums.add(userolevolist.getPages() - 1);
-                    pagenums.add(userolevolist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (userolevolist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < userolevolist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-            }
+            Paginator.page(pagenums,userolevolist,pageNum,pageSize);
             mv.addObject("pagenums", pagenums);
         }
         mv.addObject("search", search);
@@ -136,34 +110,7 @@ public class AdminController {
             PageInfo userolevolist = new PageInfo(userRoleVos);
             mv.addObject("ulist", userolevolist);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && userolevolist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= userolevolist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(userolevolist.getPages() - 4);
-                    pagenums.add(userolevolist.getPages() - 3);
-                    pagenums.add(userolevolist.getPages() - 2);
-                    pagenums.add(userolevolist.getPages() - 1);
-                    pagenums.add(userolevolist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (userolevolist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < userolevolist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-            }
+            Paginator.page(pagenums,userolevolist,pageNum,pageSize);
             mv.addObject("pagenums", pagenums);
         }
         mv.addObject("search", search);
@@ -472,34 +419,7 @@ public class AdminController {
         List<Email> emails = emailService.SelectAllEmail(pageNum, pageSize);
         PageInfo elist = new PageInfo(emails);
         List pagenums = new ArrayList();
-        if (pageNum > 3 && elist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-        {
-            if (pageNum >= elist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                pagenums.add(elist.getPages() - 4);
-                pagenums.add(elist.getPages() - 3);
-                pagenums.add(elist.getPages() - 2);
-                pagenums.add(elist.getPages() - 1);
-                pagenums.add(elist.getPages());
-            } else {
-                pagenums.add(pageNum - 2);
-                pagenums.add(pageNum - 1);
-                pagenums.add(pageNum);
-                pagenums.add(pageNum + 1);
-                pagenums.add(pageNum + 2);
-            }
-        } else {          //前端页数没超过第三页时
-            if (elist.getPages() < 5) //如果总页数小于5
-            {
-                for (int i = 0; i < elist.getPages(); i++)
-                    pagenums.add(i + 1);
-            } else {
-                pagenums.add("1");
-                pagenums.add("2");
-                pagenums.add("3");
-                pagenums.add("4");
-                pagenums.add("5");
-            }
-        }
+        Paginator.page(pagenums,elist,pageNum,pageSize);
         mv.addObject("pagenums", pagenums);
         mv.addObject("elist", elist);
         mv.setViewName("email");

@@ -12,11 +12,14 @@ import com.aliyuncs.profile.DefaultProfile;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * 短信验证码SDK
+ */
 public class SendSms {
     public static HashMap<String,String> getMessageStatus(String mobile) throws IOException {
         HashMap<String,String> hashMap = new HashMap<>();
         // 第三方平台网站地址阿里
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FoZZzVvdWkmrXQTjYX8", "u6hT0sHy46UbBfEoUkDs05aV7odVGy");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "你阿里的accessKeyId", "你的阿里的secret");
         IAcsClient client = new DefaultAcsClient(profile);
         String randMun = String.valueOf(RandomUtil.getRandNum());
         System.out.println(randMun);

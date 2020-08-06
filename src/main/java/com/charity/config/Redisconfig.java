@@ -1,5 +1,7 @@
 package com.charity.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.CacheManager;
@@ -24,9 +26,7 @@ import java.util.Set;
 @EnableCaching
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class Redisconfig extends CachingConfigurerSupport {
-    public Redisconfig() {
-        System.out.println("RedisConfig容器启动初始化");
-    }
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource
     private LettuceConnectionFactory lettuceConnectionFactory;
 

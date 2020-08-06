@@ -1,5 +1,6 @@
 package com.charity.controller;
 
+import com.charity.common.Paginator;
 import com.charity.entity.Award;
 import com.charity.entity.UserAwardVo;
 import com.charity.entity.UserScoreVo;
@@ -65,34 +66,7 @@ public class ScoreController {
         List<UserScoreVo> userScoreVos = scoreService.selectPersonScore(id, pageNum, pageSize);
         PageInfo slist = new PageInfo(userScoreVos);
         List pagenums = new ArrayList();
-        if (pageNum > 3 && slist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-        {
-            if (pageNum >= slist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                pagenums.add(slist.getPages() - 4);
-                pagenums.add(slist.getPages() - 3);
-                pagenums.add(slist.getPages() - 2);
-                pagenums.add(slist.getPages() - 1);
-                pagenums.add(slist.getPages());
-            } else {
-                pagenums.add(pageNum - 2);
-                pagenums.add(pageNum - 1);
-                pagenums.add(pageNum);
-                pagenums.add(pageNum + 1);
-                pagenums.add(pageNum + 2);
-            }
-        } else {          //前端页数没超过第三页时
-            if (slist.getPages() < 5) //如果总页数小于5
-            {
-                for (int i = 0; i < slist.getPages(); i++)
-                    pagenums.add(i + 1);
-            } else {
-                pagenums.add("1");
-                pagenums.add("2");
-                pagenums.add("3");
-                pagenums.add("4");
-                pagenums.add("5");
-            }
-        }
+        Paginator.page(pagenums,slist,pageNum,pageSize);
         mv.addObject("pagenums", pagenums);
         mv.addObject("slist", slist);
         mv.setViewName("score");
@@ -117,34 +91,7 @@ public class ScoreController {
             userAwardVos = awardService.SelectPersonAward(uid, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && alist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= alist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(alist.getPages() - 4);
-                    pagenums.add(alist.getPages() - 3);
-                    pagenums.add(alist.getPages() - 2);
-                    pagenums.add(alist.getPages() - 1);
-                    pagenums.add(alist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (alist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < alist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-            }
+            Paginator.page(pagenums,alist,pageNum,pageSize);
             mv.addObject("pagenums", pagenums);
             mv.addObject("alist", alist);
         } else if (userService.SelectUsername(key) != null && permisssionlevel != 4) {
@@ -152,68 +99,14 @@ public class ScoreController {
             userAwardVos = awardService.SelectPersonAward(uid, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && alist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= alist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(alist.getPages() - 4);
-                    pagenums.add(alist.getPages() - 3);
-                    pagenums.add(alist.getPages() - 2);
-                    pagenums.add(alist.getPages() - 1);
-                    pagenums.add(alist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (alist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < alist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-            }
+            Paginator.page(pagenums,alist,pageNum,pageSize);
             mv.addObject("pagenums", pagenums);
             mv.addObject("alist", alist);
         } else {
             userAwardVos = awardService.SelectPersonAward(id, pageNum, pageSize);
             PageInfo alist = new PageInfo(userAwardVos);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && alist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= alist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(alist.getPages() - 4);
-                    pagenums.add(alist.getPages() - 3);
-                    pagenums.add(alist.getPages() - 2);
-                    pagenums.add(alist.getPages() - 1);
-                    pagenums.add(alist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (alist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < alist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-            }
+            Paginator.page(pagenums,alist,pageNum,pageSize);
             mv.addObject("pagenums", pagenums);
             mv.addObject("alist", alist);
         }

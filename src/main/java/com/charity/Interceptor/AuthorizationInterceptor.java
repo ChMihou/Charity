@@ -3,6 +3,8 @@ package com.charity.Interceptor;
 import com.charity.utils.RedisUtils;
 import com.charity.model.AuthToken;
 import com.charity.model.ConstantKit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 public class AuthorizationInterceptor implements HandlerInterceptor {
-
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //创建redis连接
     @Autowired

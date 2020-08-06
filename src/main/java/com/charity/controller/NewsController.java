@@ -1,5 +1,6 @@
 package com.charity.controller;
 
+import com.charity.common.Paginator;
 import com.charity.entity.Jsoncheck;
 import com.charity.entity.Notice;
 import com.charity.model.AuthToken;
@@ -76,70 +77,16 @@ public class NewsController {
             List<Notice> notices = noticeService.SelectreadNotice1(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         } else {
             List<Notice> notices = noticeService.SelectNotice1(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
@@ -171,70 +118,16 @@ public class NewsController {
             List<Notice> notices = noticeService.SelectreadNotice3(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         } else {
             List<Notice> notices = noticeService.SelectNotice3(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
@@ -266,70 +159,16 @@ public class NewsController {
             List<Notice> notices = noticeService.SelectreadNotice2(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         } else {
             List<Notice> notices = noticeService.SelectNotice2(notice, pageNum, pageSize);
             PageInfo nlist = new PageInfo(notices);
             List pagenums = new ArrayList();
-            if (pageNum > 3 && nlist.getPages() > 5)  //当前端页数超过第三页时,并且查询到的总页数大于5
-            {
-                if (pageNum >= nlist.getPages() - 2) { //specialSelect.getPages()总页数，如果前端页数大于等于总页数-2时
-                    pagenums.add(nlist.getPages() - 4);
-                    pagenums.add(nlist.getPages() - 3);
-                    pagenums.add(nlist.getPages() - 2);
-                    pagenums.add(nlist.getPages() - 1);
-                    pagenums.add(nlist.getPages());
-                } else {
-                    pagenums.add(pageNum - 2);
-                    pagenums.add(pageNum - 1);
-                    pagenums.add(pageNum);
-                    pagenums.add(pageNum + 1);
-                    pagenums.add(pageNum + 2);
-                }
-            } else {          //前端页数没超过第三页时
-                if (nlist.getPages() < 5) //如果总页数小于5
-                {
-                    for (int i = 0; i < nlist.getPages(); i++)
-                        pagenums.add(i + 1);
-                } else {
-                    pagenums.add("1");
-                    pagenums.add("2");
-                    pagenums.add("3");
-                    pagenums.add("4");
-                    pagenums.add("5");
-                }
-                mv.addObject("pagenums", pagenums);
-            }
+            Paginator.page(pagenums, nlist, pageNum, pageSize);
+            mv.addObject("pagenums", pagenums);
             mv.addObject("nselect", 1);
             mv.addObject("nlist", nlist);
         }
