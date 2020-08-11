@@ -283,7 +283,6 @@ public class NewsController {
     @ResponseBody
     @AuthToken
     public boolean deleteListNotice(String ids) {
-        System.out.println(ids.toString());
         String[] id = ids.split(",");
         System.out.println(id[0]);
         int[] ints = new int[id.length];
