@@ -93,7 +93,6 @@ public class AlipayDemoController {
 
         //请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();
-        System.out.println("返回页面" + result);
         return result;
     }
 
@@ -111,9 +110,6 @@ public class AlipayDemoController {
             String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
             String ids = (String) request.getSession().getAttribute("ids");
-            System.out.println("订单号" + out_trade_no);
-            System.out.println("交易号" + trade_no);
-            System.out.println("交易金额" + total_amount);
             Integer nid = (Integer) redisUtils.get(out_trade_no);
             redisUtils.remove(out_trade_no);
             String donations = "捐赠" + total_amount + "元";

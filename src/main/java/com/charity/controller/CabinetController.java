@@ -109,7 +109,6 @@ public class CabinetController {
         String caddress = province + city + area + country;
         cabinet.setCaddress(caddress);
         cabinet.setCname(cname);
-        System.out.println(cabinet);
         Boolean i = cabinetService.addCabinet(cabinet);
         if (i)
             return true;
@@ -126,7 +125,6 @@ public class CabinetController {
         cabinet.setCaddress(caddress);
         cabinet.setCname(cname);
         cabinet.setCid(cid);
-        System.out.println(cabinet);
         Boolean i = cabinetService.updateCabinet(cabinet);
         if (i)
             return true;

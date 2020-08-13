@@ -282,7 +282,6 @@ public class MessageController {
         Date date = new Date();
         Timestamp datetime = new Timestamp(date.getTime());
         com.setCtime(datetime);
-        System.out.println("hello");
         Boolean i = commentService.InsertComment(com);
         if (i) {
             return true;

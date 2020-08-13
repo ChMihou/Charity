@@ -123,9 +123,7 @@ public class AdminController {
     public ModelAndView edituser(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         Integer id = Integer.valueOf(request.getParameter("id"));
-        System.out.println(id);
         User user = userService.SelectUserId(id);
-        System.out.println(user);
         mv.addObject("id", user.getUid());
         mv.addObject("user", user);
         mv.setViewName("edituser");
@@ -222,7 +220,6 @@ public class AdminController {
         UserRole userRole = new UserRole();
         userRole.setUserid(id);
         userRole.setRoleid(dutyid);
-        System.out.println(userRole);
         boolean flag = roleService.alterUserRole(userRole);
         if (flag) {
             return true;
@@ -396,8 +393,6 @@ public class AdminController {
             String sendUser = (String) session.getAttribute("username");
             Date date = new Date();
             Timestamp etime = new Timestamp(date.getTime());
-            System.out.println(sendUser);
-            System.out.println(name);
             Email email1 = new Email();
             email1.setEusername(name);
             email1.setEmail(email);

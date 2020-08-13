@@ -174,7 +174,6 @@ public class ScoreController {
         award.setAcomment(acomment);
         award.setAid(id);
         Boolean a = awardService.UpdateAcomment(award);
-        System.out.println(a);
         if (a) {
             return true;
         } else {

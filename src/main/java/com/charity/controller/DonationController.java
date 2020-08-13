@@ -109,7 +109,6 @@ public class DonationController {
         ModelAndView mv = new ModelAndView();
         Integer id;
         id = Integer.valueOf(request.getParameter("id"));
-        System.out.println(id);
         Donation donation = donationService.SelectNameDonation(id);
         String username = userService.SelectUserId(donation.getDuid()).getUsername();
         Integer score = scoreService.selectIdScore(donation.getDsid()).getScore();
@@ -140,8 +139,6 @@ public class DonationController {
         score1.setScause(Scause);
         score1.setScore(score);
         score1.setSid(dsid);
-        System.out.println(donation);
-        System.out.println(score1);
         Boolean i = scoreService.updateOne(score1);
         Boolean a = donationService.UpdateDonation(donation);
         if (a && i) {
@@ -158,7 +155,6 @@ public class DonationController {
         if (userService.SelectUsername(dusername) == null)
             return 3;//名字错误
         Integer uid = userService.SelectUsername(dusername).getUid();
-        System.out.println(dusername + uid);
         String Scause = donations;
         if (dmoney != null)
             Scause = Scause + "和捐赠了" + dmoney + "元";
@@ -177,7 +173,6 @@ public class DonationController {
         donation.setDsid(sid);
         donation.setDonations(donations);
         donation.setDuid(23);
-        System.out.println(donation);
         Boolean i = donationService.AddDonation(donation);
         if (i)
             return 1;
@@ -191,7 +186,6 @@ public class DonationController {
     public String deleteDonation(String id) throws IOException {
 
         Integer did = Integer.valueOf(id);
-        System.out.println(did);
         Integer sid = donationService.SelectIdDonation(did).getDsid();
         Boolean flag = donationService.DeleteDonation(did);
         Boolean flag1 = scoreService.deletescore(sid);
@@ -205,7 +199,6 @@ public class DonationController {
     @RequestMapping("donateMoney")
     public ModelAndView donateMoney(Integer id) {
         ModelAndView mv = new ModelAndView();
-        System.out.println(id);
         mv.addObject("id", id);
         mv.setViewName("donatemoney");
         return mv;

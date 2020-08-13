@@ -68,7 +68,6 @@ public class CommentController {
         message.setMapply(mess);
         message.setMcheckboy(Mcheckboy);
         Boolean a = messageService.addapply(message);
-        System.out.println(a);
         if (a) {
             return true;
         } else {
@@ -87,7 +86,6 @@ public class CommentController {
         comment.setCapply(apply);
         comment.setCid(id);
         Boolean a = commentService.UpdateApply(comment);
-        System.out.println(a);
         if (a) {
             return true;
         } else {
@@ -112,9 +110,7 @@ public class CommentController {
     @ResponseBody
     @AuthToken
     public boolean deleteListComment(String ids) {
-        System.out.println(ids.toString());
         String[] id = ids.split(",");
-        System.out.println(id[0]);
         int[] ints = new int[id.length];
 
         for (int i = 0; i < id.length; i++) {
@@ -169,7 +165,6 @@ public class CommentController {
         message.setMtime(mtime);
         message.setMflag(0);
         message.setMess(n_article);
-        System.out.println(message);
         Boolean i = messageService.addMessage(message);
         if (i)
             return true;
@@ -201,7 +196,6 @@ public class CommentController {
         message.setMtitle(key);
         message.setMflag(flag);
         if (permisssionlevel == 3) {
-            System.out.println(message);
             List<Message> messageList = messageService.CheckallMessage(message, pageNum, pageSize);
             PageInfo mlist = new PageInfo(messageList);
             List pagenums = new ArrayList();
@@ -225,7 +219,6 @@ public class CommentController {
     @ResponseBody
     @AuthToken
     public Boolean deleteOneMessage(Integer id) {
-        System.out.println(id);
         Boolean i = messageService.deleteOneMessage(id);
         if (i)
             return true;

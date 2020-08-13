@@ -237,8 +237,6 @@ public class NewsController {
     @ResponseBody
     @AuthToken
     public Boolean addarticle(String n_title, String n_article, String n_author, Integer n_flag, Integer n_select, String images, Integer aims, String nintro) {
-        System.out.println(n_title);
-        System.out.println(n_flag);
         Notice notice = new Notice();
         Date date = new Date();
         Timestamp nousedate = new Timestamp(date.getTime());
@@ -270,8 +268,6 @@ public class NewsController {
     @ResponseBody
     @AuthToken
     public boolean deleteOneNotice(Integer id) {
-        System.out.println(id);
-
         Boolean i = noticeService.deleteOneNotice(id);
         if (i) {
             return true;
@@ -284,7 +280,6 @@ public class NewsController {
     @AuthToken
     public boolean deleteListNotice(String ids) {
         String[] id = ids.split(",");
-        System.out.println(id[0]);
         int[] ints = new int[id.length];
 
         for (int i = 0; i < id.length; i++) {

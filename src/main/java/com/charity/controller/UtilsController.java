@@ -107,7 +107,6 @@ public class UtilsController {
                     User user = new User();
                     user.setUid(id);
                     user.setUimage(relativePath);
-                    System.out.println(user);
                     Boolean i = userService.InsertImage(user);
                     if (i) {
                         root.put("relativePath", relativePath);//前端根据是否存在该字段来判断上传是否成功
@@ -127,7 +126,6 @@ public class UtilsController {
 
 //        JSON.toJSONString(root,SerializerFeature.DisableCircularReferenceDetect);
         String root_json = JSON.toJSONString(root);
-        System.out.println(root_json);
         return root;
     }
 }

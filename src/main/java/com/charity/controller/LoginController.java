@@ -68,8 +68,6 @@ public class LoginController {
 
         user.setUsername(Username);
 
-        System.out.println(user.getUsername());
-
         // 从session中获取随机数
         String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
 
@@ -160,8 +158,6 @@ public class LoginController {
             userRole.setRoleid(5);
             userRole.setUserid(user.getUid());
             Boolean flag2 = roleService.adduserrole(userRole);
-            System.out.println(flag2);
-            System.out.println(flag1);
             if (flag1 && flag2) {
                 return "1";     // 添加用户成功
             } else {
@@ -173,8 +169,6 @@ public class LoginController {
     @RequestMapping(value = "sendme", method = RequestMethod.POST)
     @ResponseBody
     public String sendme(String username, String mobile, HttpServletRequest request) throws HttpException, IOException {
-        System.out.println(username);
-        System.out.println(mobile);
         User user = new User();
         user.setUsername(username);
         user.setUiphone(mobile);
