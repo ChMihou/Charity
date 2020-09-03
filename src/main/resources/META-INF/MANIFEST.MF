@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Main-Class: com.charity.CharityApplication
+Class-Path: log4j-api-2.12.1.jar hibernate-validator-6.0.18.Final.jar js
+ qlparser-1.0.jar jboss-logging-3.4.1.Final.jar HikariCP-3.4.1.jar sprin
+ g-websocket-5.2.2.RELEASE.jar spring-tx-5.2.2.RELEASE.jar lombok-1.18.1
+ 0.jar spring-messaging-5.2.2.RELEASE.jar spring-boot-starter-data-jdbc-
+ 2.2.2.RELEASE.jar unbescape-1.1.6.RELEASE.jar spring-expression-5.2.2.R
+ ELEASE.jar spring-boot-starter-web-2.2.2.RELEASE.jar spring-boot-starte
+ r-2.2.2.RELEASE.jar alipay-sdk-java-3.4.49.ALL.jar spring-beans-5.2.2.R
+ ELEASE.jar javax.activation-api-1.2.0.jar jaxb-core-2.1.14.jar spring-w
+ ebmvc-5.2.2.RELEASE.jar commons-httpclient-3.1.jar aliyun-java-sdk-core
+ -4.1.0.jar log4j-core-2.12.1.jar druid-1.1.9.jar spring-aop-5.2.2.RELEA
+ SE.jar snakeyaml-1.25.jar spring-jcl-5.2.2.RELEASE.jar spring-data-redi
+ s-2.2.3.RELEASE.jar spring-data-jdbc-1.1.3.RELEASE.jar gson-2.8.6.jar p
+ agehelper-spring-boot-autoconfigure-1.2.5.jar spring-boot-starter-valid
+ ation-2.2.2.RELEASE.jar reactive-streams-1.0.3.jar spring-oxm-5.2.2.REL
+ EASE.jar mybatis-spring-boot-starter-2.1.1.jar jackson-annotations-2.10
+ .1.jar commons-io-2.2.jar commons-codec-1.13.jar attoparser-2.0.5.RELEA
+ SE.jar druid-spring-boot-starter-1.1.9.jar spring-boot-starter-jdbc-2.2
+ .2.RELEASE.jar jaxb-impl-2.1.jar commons-lang3-3.9.jar netty-codec-4.1.
+ 43.Final.jar spring-boot-starter-tomcat-2.2.2.RELEASE.jar fastjson-1.2.
+ 47.jar tomcat-embed-el-9.0.29.jar jaxb-api-2.3.1.jar spring-jdbc-5.2.2.
+ RELEASE.jar tomcat-embed-websocket-9.0.29.jar jackson-module-parameter-
+ names-2.10.1.jar jakarta.annotation-api-1.3.5.jar jakarta.mail-1.6.4.ja
+ r spring-boot-devtools-2.2.2.RELEASE.jar netty-common-4.1.43.Final.jar 
+ mybatis-3.5.3.jar commons-logging-1.0.4.jar mybatis-spring-boot-autocon
+ figure-2.1.1.jar jedis-3.1.0.jar spring-boot-starter-data-redis-reactiv
+ e-2.2.2.RELEASE.jar spring-data-relational-1.1.3.RELEASE.jar jul-to-slf
+ 4j-1.7.29.jar tomcat-embed-core-9.0.29.jar jackson-databind-2.10.1.jar 
+ log4j-slf4j-impl-2.12.1.jar commons-fileupload-1.3.jar thymeleaf-3.0.11
+ .RELEASE.jar thymeleaf-extras-java8time-3.0.4.RELEASE.jar thymeleaf-spr
+ ing5-3.0.11.RELEASE.jar log4j-jul-2.12.1.jar jackson-datatype-jsr310-2.
+ 10.1.jar jakarta.validation-api-2.0.1.jar spring-context-support-5.2.2.
+ RELEASE.jar spring-boot-starter-mail-2.2.2.RELEASE.jar netty-buffer-4.1
+ .43.Final.jar classmate-1.5.1.jar pagehelper-5.1.4.jar jakarta.activati
+ on-1.2.1.jar jackson-datatype-jdk8-2.10.1.jar httpcore-4.4.12.jar netty
+ -resolver-4.1.43.Final.jar spring-core-5.2.2.RELEASE.jar spring-boot-au
+ toconfigure-2.2.2.RELEASE.jar netty-transport-4.1.43.Final.jar spring-w
+ eb-5.2.2.RELEASE.jar jackson-core-2.10.1.jar slf4j-api-1.7.29.jar httpc
+ lient-4.5.10.jar mybatis-spring-2.0.3.jar spring-boot-starter-thymeleaf
+ -2.2.2.RELEASE.jar pagehelper-spring-boot-starter-1.2.5.jar lettuce-cor
+ e-5.2.1.RELEASE.jar commons-pool2-2.7.0.jar spring-boot-2.2.2.RELEASE.j
+ ar spring-boot-starter-log4j2-2.2.2.RELEASE.jar activation-1.1.1.jar sp
+ ring-boot-starter-json-2.2.2.RELEASE.jar reactor-core-3.3.1.RELEASE.jar
+  spring-context-5.2.2.RELEASE.jar mysql-connector-java-8.0.18.jar sprin
+ g-data-keyvalue-2.2.3.RELEASE.jar netty-handler-4.1.43.Final.jar spring
+ -boot-starter-websocket-2.2.2.RELEASE.jar spring-data-commons-2.2.3.REL
+ EASE.jar spring-boot-starter-data-redis-2.2.2.RELEASE.jar
+
