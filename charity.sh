@@ -21,11 +21,8 @@ function check_fail(){
 }
 
 #执行方法
-stop
-#执行检验
-check_fail "重启项目失败"
+stop && check_fail "重启项目失败"
 #启动jar包
 cd /home/
 
 nohup java -jar charity-0.0.1-SNAPSHOT.jar  > charity.out 2>&1&
-~
