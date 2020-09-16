@@ -159,7 +159,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <fork>true</fork>
                 </configuration>
             </plugin>
         </plugins>
