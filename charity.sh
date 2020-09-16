@@ -3,7 +3,7 @@ GIT_HOME=https://github.com/ChMihou/Charity.git
 JAR_NAME='charity.jar'
 DATE=$(date '+%y_%m_%d_%T')
 BACK_JAR=/home/charity/back_jar
-JAR_HOME=/home/charity
+JAR_HOME=/home/charity/Charity
 #创建kill进程的方法
 function stop(){
 #查询jar包的端口
