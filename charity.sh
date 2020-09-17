@@ -38,9 +38,7 @@ function back_jar() {
         else
                 cp $JAR_HOME/target/charity-0.0.1-SNAPSHOT.jar $BACK_JAR/charity.jar
                 echo -e "\e[1;31m 第一份备份完成  \e[0m"
-
         fi
-
 }
 #回滚上一个版本库
 function rollback(){
