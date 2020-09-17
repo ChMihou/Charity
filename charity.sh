@@ -30,19 +30,22 @@ function build() {
 #代码备份，可以回滚
 function back_jar() {
         cd $HOME
+        DATE=$(date '+%y_%m_%d_%T')
         if [ -e "$JAR_NAME" ];then
-                mv $JAR_NAME $BACK_JAR
+                mv $JAR_NAME $BACK_JAR/${JAR_NAME}.$DATE
                 echo -e "\e[1;31m 代码备份完成  \e[0m"
+                ln -f $BACK_JAR/${JAR_NAME}.$DATE  $BACK_JAR/charity.jar
         else
-                mv $JAR_NAME $BACK_JAR
+                cp $JAR_HOME/target/charity-0.0.1-SNAPSHOT.jar $BACK_JAR/charity.jar
                 echo -e "\e[1;31m 第一份备份完成  \e[0m"
+
         fi
 
 }
 #回滚上一个版本库
 function rollback(){
         cd $BACK_JAR
-        yes|cp $JAR_NAME $HOME
+        yes|cp charity.jar $HOME/charity-0.0.1-SNAPSHOT.jar
         echo -e "\e[1;31m 回滚上一个版本 \e[0m"
 }
 #检查执行语句失败  ==eq 执行成功  !=ne 执行失败
@@ -64,7 +67,7 @@ function start() {
         echo -e "\e[1;31m 新版本信息：  \e[0m"
         nohup java -jar $JAR_NAME  > charity.out 2>&1&
         check_fail  "\e[1;31m 重启项目失败 \e[0m "
-#查询jar包的端口
+        #查询jar包的端口
         newpid=`ps -ef|grep charity-0.0.1-SNAPSHOT.jar|grep -v "grep"|awk '{print $2}'`
         echo -e "\e[1;31m tomcat进程号 :$newpid \e[0m"
         echo -e "\e[1;31m 项目启动成功  \e[0m"
@@ -79,4 +82,3 @@ function main(){
         stop && start && exit 0
 }
 main $1
-
