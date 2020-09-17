@@ -69,10 +69,14 @@ function start() {
         echo -e "\e[1;31m tomcat进程号 :$newpid \e[0m"
         echo -e "\e[1;31m 项目启动成功  \e[0m"
 }
+#主函数
+function main(){
+        #从git上更新项目
+        [ "$1" == "git" ] && stop && build && back_jar && move && start && exit 0
+        #回滚上一个版本
+        [ "$1" == "rb" ] && stop && rollback && start && exit 0
+        #重新启动项目
+        stop && start && exit 0
+}
+main $1
 
-#从git上更新项目
-[ "$1" == "git" ] && stop && build && back_jar && move && start && exit 0
-#回滚上一个版本
-[ "$1" == "rb" ] && stop && rollback && start && exit 0
-#重新启动项目
-stop && start && exit 0
