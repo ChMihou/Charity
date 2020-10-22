@@ -20,14 +20,21 @@ function stop(){
 ##拉取项目并构建项目
 function build() {
         echo -e "\e[1;31m 开始拉取最新代码  \e[0m"
-        cd $JAR_HOME
-        git pull $GIT_HOME
-        check_fail  "\e[1;31m 拉取失败了 \e[0m"
+        cd $HOME
+        if [ -d "$JAR_HOME" ];then
+          cd $JAR_HOME
+          git pull $GIT_HOME
+          check_fail  "\e[1;31m 拉取最新代码失败了 \e[0m"
+        else
+          git clone $GIT_HOME
+          check_fail  "\e[1;31m 克隆失败了 \e[0m"
+          fi
         echo -e "\e[1;31m 开始编译代码  \e[0m"
-        mvn clean install  -Dmaven.test.skip=true
+        cd $JAR_HOME
+        mvn clean package  -Dmaven.test.skip=true
         echo -e "\e[1;31m 编译完成  \e[0m"
 }
-#代码备份，可以回滚
+#代码备份，可以实现回滚
 function back_jar() {
         cd $HOME
         DATE=$(date '+%y_%m_%d_%T')
