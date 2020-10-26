@@ -12,12 +12,18 @@ import java.util.Random;
  * 验证码生成类
  */
 public class RandomValidateCode {
-    public static final String RANDOMCODEKEY= "RANDOMVALIDATECODEKEY";//放到session中的key
-    private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生数字与字母组合的字符串
-    private int width = 80;// 图片宽
-    private int height = 30;// 图片高
-    private int lineSize = 40;// 干扰线数量
-    private int stringNum = 4;// 随机产生字符数量
+    //放到session中的key
+    public static final String RANDOMCODEKEY= "RANDOMVALIDATECODEKEY";
+    //随机产生数字与字母组合的字符串
+    private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // 图片宽
+    private int width = 80;
+    // 图片高
+    private int height = 30;
+    // 干扰线数量
+    private int lineSize = 40;
+    // 随机产生字符数量
+    private int stringNum = 4;
 
     private Random random = new Random();
 

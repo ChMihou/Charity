@@ -30,6 +30,7 @@ public class Redisconfig extends CachingConfigurerSupport {
     @Resource
     private LettuceConnectionFactory lettuceConnectionFactory;
 
+    @Override
     @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
@@ -48,6 +49,7 @@ public class Redisconfig extends CachingConfigurerSupport {
 
 
     // 缓存管理器
+    @Override
     @Bean
     public CacheManager cacheManager() {
         RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager.RedisCacheManagerBuilder
@@ -66,8 +68,10 @@ public class Redisconfig extends CachingConfigurerSupport {
         RedisTemplate<String,Serializable> template = new RedisTemplate<String,Serializable>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());// Hash key序列化
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());// Hash value序列化
+        // Hash key序列化
+        template.setHashKeySerializer(new StringRedisSerializer());
+        // Hash value序列化
+        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.setConnectionFactory(redisConnectionFactory);
         return template;
     }
