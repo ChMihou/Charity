@@ -55,6 +55,14 @@ public class NewsController {
     @Autowired
     EmailService emailService;
 
+
+    @RequestMapping("/")
+    public ModelAndView defaultLogin() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("home");
+        return mv;
+    }
+
     @RequestMapping("admin-news")
     @AuthToken
     public ModelAndView adminnews(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize, HttpServletRequest request) {

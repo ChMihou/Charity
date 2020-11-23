@@ -42,13 +42,6 @@ public class LoginController {
     @Autowired
     RoleService roleService;
 
-    @RequestMapping("/")
-    public ModelAndView defaultLogin() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("login");
-        return mv;
-    }
-
     @RequestMapping("login")
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
