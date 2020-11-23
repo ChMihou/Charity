@@ -3,10 +3,14 @@ package com.charity.utils;
 import java.util.List;
 
 public class Page<T> {
-    private int total;      //总条数
-    private int page;       //当前页
-    private int size;       //每页数
-    private List<T> rows;   //结果集
+    //总条数
+    private int total;
+    //当前页
+    private int page;
+    //每页数
+    private int size;
+    //结果集
+    private List<T> rows;
 
     public int getTotal() {
         return total;
