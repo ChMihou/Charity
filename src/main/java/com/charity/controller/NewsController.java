@@ -3,6 +3,8 @@ package com.charity.controller;
 import com.charity.common.Paginator;
 import com.charity.entity.Jsoncheck;
 import com.charity.entity.Notice;
+import com.charity.entity.UserCommentVo;
+import com.charity.entity.UserDonationVo;
 import com.charity.model.AuthToken;
 import com.charity.service.*;
 import com.github.pagehelper.PageInfo;
@@ -56,9 +58,38 @@ public class NewsController {
     EmailService emailService;
 
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public ModelAndView defaultLogin() {
         ModelAndView mv = new ModelAndView();
+
+        Notice notice = new Notice();
+        List<Notice> notices = noticeService.SelectreadNotice1(notice, 1, 5);
+        List<Notice> notices1 = noticeService.SelectreadNotice2(notice, 1, 5);
+        PageInfo nlist1 = new PageInfo(notices1);
+        PageInfo nlist = new PageInfo(notices);
+        List<UserDonationVo> userDonationVos = donationService.SelectAllDonation(null, 1, 5);
+        PageInfo dlist = new PageInfo(userDonationVos);
+        List<UserCommentVo> userCommentVos = commentService.SelectComment(1, 5);
+        PageInfo clist = new PageInfo(userCommentVos);
+        List<String> images = noticeService.SelectAllImage(1, 6);
+        PageInfo ilist = new PageInfo(images);
+        notice = noticeService.SelectLatestNotice();
+        Integer money = donationService.CheckDMoney();
+        Integer people = userService.checkuserall();
+        Integer donation = donationService.CheckDonation();
+        Integer numnotice = noticeService.CheckNotice();
+        mv.addObject("numnotice", numnotice);
+        mv.addObject("money", money);
+        mv.addObject("people", people);
+        mv.addObject("donation", donation);
+        mv.addObject("notice", notice);
+        mv.addObject("ilist", ilist);
+        mv.addObject("clist", clist);
+        mv.addObject("dlist", dlist);
+        mv.addObject("nlist", nlist);
+        mv.addObject("nlist1", nlist1);
+        mv.setViewName("home");
+
         mv.setViewName("home");
         return mv;
     }
